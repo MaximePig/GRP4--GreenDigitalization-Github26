@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Header -->
+<section>
+  <div class="container">
+
+    <h1>Please, login here!</h1>
+
+    <form method="POST" action="{{ url_for('users.login') }}">
+      
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" placeholder="Enter your username" required>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter your password" required>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <br>
+    </form>
+      <br>
+  </div>
+</section>
+
+        
+{% endblock content %}
