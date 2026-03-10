@@ -1,5 +1,5 @@
 /* Colors 
-Home, section 1 (head, background): #9fa7bf
+Home, section 1 (head, background): (#9fa7bf) #FAF0E6
 Home, section 1 (head, boxes): #568c63
 Home, section 2 (developers, background): #c5c8d9 
 Home, section 2 (developers, boxes): #49736f
@@ -13,6 +13,14 @@ p {
 /* Section header_home */
 .section_header_home {
   background-color:#9fa7bf;
+}
+.home-title {
+    font-size: 60px;
+    font-weight: 900;       /* makes it bold */
+}
+
+.text-logo {
+    color: #14532d;         /* change green here */
 }
 .header_home {
   display: flex;  
