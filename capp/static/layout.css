@@ -45,7 +45,7 @@ img {
 }
 /* Navbar  */
 .section_carbon_app_navbar {
-  background-color:#8bbbd9;
+  background-color: #8bbd78;
 }
 .carbon_app_navbar {
   display: flex;
@@ -53,7 +53,7 @@ img {
   justify-content: flex-start;
   height: 70px;
   align-items: center;
-  background-color: #8bbbd9;
+  background-color: #8bbd78;
   padding: 0 0px;
 }
 .carbon_app_navbar a {

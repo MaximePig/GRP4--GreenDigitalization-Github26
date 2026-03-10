@@ -12,7 +12,7 @@ p {
 }
 /* Section header_home */
 .section_header_home {
-  background-color:#9fa7bf;
+  background-color:#cdc3b7;
 }
 .home-title {
     font-size: 60px;
@@ -25,11 +25,11 @@ p {
 .header_home {
   display: flex;  
   align-items: start;
-  background: #9fa7bf;
+  background: #cdc3b7;
 }
 .header_home .box {
   flex: 1;
-  background: #9fa7bf;
+  background: #cdc3b7;
   color: #fff;
   border-radius: 10px;
   margin: 20px 10px;
@@ -64,16 +64,16 @@ p {
 }
 /* Section developers */
 .section_developers {
-  background-color:#c5c8d9;
+  background-color:#e8e6df;
 }
 .developers {
   display: flex;  
   align-items: start;
-  background: #c5c8d9;
+  background: #e8e6df;
 }
 .developers .box {
   flex: 1;
-  background: #49736f;
+  background: #8bbd78;
   color: black;
   border-radius: 10px;
   margin: 20px 10px;
@@ -93,7 +93,7 @@ p {
 }
 .developers .box2 {
   flex: 1;
-  background: #49736f;
+  background: #8bbd78;
   color: black;
   border-radius: 10px;
   margin: 20px 10px;
@@ -127,13 +127,13 @@ p {
   border-radius: 5px;
   text-decoration: none;
   font-size: 18px;
-  background-color: #49736f;
-  border: 2px solid  #c5c8d9;
+  background-color: #aaaaaa;
+  border: 2px solid  #aaaaaa;
 }
 .btn_developers:hover {
   color: #fff;
-  background-color: #c5c8d9;
-  border: 2px solid #c5c8d9;
+  background-color: #aaaaaa;
+  border: 2px solid #aaaaaa;
   text-decoration: none;
 }
 
