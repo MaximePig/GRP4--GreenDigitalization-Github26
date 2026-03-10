@@ -18,16 +18,16 @@ h4 {
 }
 /* Section header */
 .section_header_carbon_app {
-  background-color:#466fa6;
+  background-color:#cdc3b7;
 }
 .header_carbon_app {
   display: flex;  
   align-items: start;
-  background: #466fa6;
+  background: #cdc3b7;
 }
 .header_carbon_app .box {
   flex: 1;
-  background: #466fa6;
+  background: #8bbd78;
   color: #fff;
   border-radius: 10px;
   margin: 20px 10px;
@@ -49,12 +49,12 @@ h4 {
   flex-wrap:wrap;
 }
 .container_buttons_links_header_carbon_app a:hover {
-  color: #466fa6;
+  color: #8bbd78;
 }
 .container_buttons_links_header_carbon_app btn {
   width: 100px;
   height: 100px;
-  background: #466fa6;
+  background: #8bbd78;
   color: #fff;
   display: flex;
   justify-content:center;

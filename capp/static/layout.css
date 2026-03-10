@@ -71,7 +71,12 @@ img {
   flex-direction: row;
 }
 .carbon_app_navbar .logo {
-  font-weight: 400;
+  color: white;          /* color of "Route" */
+  font-size: 40px;       /* size of whole logo */
+  font-weight: 700;
+  letter-spacing: 1px;   /* spacing between letters */
+  font-family: 'Arial';
+  
 }
 .text-logo {
   color: #14532d;

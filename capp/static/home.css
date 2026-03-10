@@ -20,7 +20,10 @@ p {
 }
 
 .text-logo {
-    color: #14532d;         /* change green here */
+    color: #14532d;    /* color of "Route" */
+    font-weight: 700;
+    letter-spacing: 1px;   /* spacing between letters */
+    font-family: 'Arial';         /* change green here */
 }
 .header_home {
   display: flex;  
