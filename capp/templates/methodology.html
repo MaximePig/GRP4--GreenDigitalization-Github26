@@ -25,9 +25,7 @@
         </div>
         <div class="box">
           <img 
-            src="{{url_for('static', filename='icons/methodology1.svg')}}"
-            width="325" 
-            height="325"
+            src="{{url_for('static', filename='icons/data-processing.svg')}}"
             alt=""/>
         </div>
       </div>
@@ -42,67 +40,130 @@
         <br>
 
         <div class="methodology" style="display:block;">
-            <h1 style="text-align:center;"> Our numbers and formulas</h1>
+            <h1 style="text-align:center;">Our Numbers and Formulas</h1>
             <p>
-              We are using \(\LaTeX ~ formulas\) to calculate the carbon dioxide emissions produced by different modes of transportation. The formulas are based on the type of fuel used, the distance traveled, and other factors such as temperature. We have made some assumptions in our calculations, such as the average fuel consumption of different types of vehicles and the carbon dioxide emissions produced by each type of fuel. These assumptions are based on data from reputable sources and are intended to provide a general estimate of the carbon dioxide emissions produced by different modes of transportation:
-            </p> 
+              We use \(\LaTeX\) formulas to calculate the carbon dioxide emissions produced by different modes of transportation. The formulas are based on the type of fuel used, the distance traveled, and other factors such as temperature and passenger load. We have made some assumptions in our calculations, such as the average fuel consumption of different types of vehicles and the carbon dioxide emissions produced by each type of fuel. These assumptions are based on data from reputable sources — primarily the UK Department for Energy Security and Net Zero (DESNZ) and the IPCC — and are intended to provide a reliable estimate of the carbon dioxide emissions produced by different modes of transportation.
+            </p>
         </div>
 
-
-
-        
-
-        <!--Enumerated list (table with one column)-->
-        <div class="methodology">              
-            <div class="box_table1">
-                      
-            </div>
+        <div class="methodology">
+            <div class="box_table1"></div>
             <div class="box_table1">
                 <ol>
+
+                    <!-- BUSES -->
                     <li>
                         <h4>Buses</h4>
                         <p class="text-left">
-                            The <strong>carbon dioxide emissions</strong> produced by buses are organized in <strong>four categories</strong>. The carbon dioxide emission produced by diesel buses is 0.10231 grammes per kilometer. The carbon dioxide emission produced by CNG buses is 0.08 grammes per kilometer. The carbon dioxide emission produced by petrol buses is 0.10231 grammes per kilometer. If the buses do not use fossil fuel, their dioxide carbon emissions are 0 grammes per kilometer.
-                            <br>
-                            To work out buses dioxide emissions, we use the next formula:
-                            \[CO^2 = {Cte + \sqrt{f(km)} \over t}.\]
-                            <br>
+                            The <strong>carbon dioxide emissions</strong> produced by buses are organized into <strong>four categories</strong> depending on fuel type:
+                        </p>
+                        <table style="width:100%; border-collapse:collapse; margin: 10px 0 16px 0; text-align:left;">
+                            <thead>
+                                <tr style="background-color:#e8f5e9;">
+                                    <th style="padding:8px; border:1px solid #ccc;">Fuel Type</th>
+                                    <th style="padding:8px; border:1px solid #ccc;">Emission Factor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Diesel</td><td style="padding:8px; border:1px solid #ccc;">0.10231 kg CO₂e/km</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Petrol</td><td style="padding:8px; border:1px solid #ccc;">0.10231 kg CO₂e/km</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">CNG (Compressed Natural Gas)</td><td style="padding:8px; border:1px solid #ccc;">0.08 kg CO₂e/km</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Electric / Hydrogen</td><td style="padding:8px; border:1px solid #ccc;">0 kg CO₂e/km</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-left">
+                            To estimate bus emissions, we use the following formula:
+                            \[ CO_2 = \alpha + (d \times \beta \times \gamma(T)) \]
                             Where:
-                            <ul style="text-align:left;">
-                                <li>
-                                    \(Cte\) is a constant, since the engine requires some fuel to initialize.
-                                </li>
-                                <li>
-                                    \(km\) are the kilometers.
-                                </li>
-                                <li>
-                                    \(f\) is a coefficient depending on the type of fuel (see paragraph above).
-                                </li>
-                                <li>
-                                    \(t\) is the temperature, since in winter the engines require less fuel.
-                                </li>
-                            </ul>
-                            
+                        </p>
+                        <ul style="text-align:left;">
+                            <li>\(\alpha\) is a constant representing the baseline fuel consumption required to initialize and run the engine, regardless of distance.</li>
+                            <li>\(d\) is the distance traveled in kilometers.</li>
+                            <li>\(\beta\) is a fuel-type coefficient corresponding to the emission factors listed above.</li>
+                            <li>\(\gamma(T)\) is a temperature-dependent correction factor, since colder temperatures cause engines to consume more fuel — particularly relevant in Nordic climates like Norway.</li>
+                        </ul>
+                        <p class="text-left">
+                            Since buses carry multiple passengers simultaneously, the emission factors already reflect an average occupancy rate, following the DESNZ methodology. This means individual passenger emissions are embedded in the per-kilometer figure, making bus travel one of the more efficient motorized options per person.
                         </p>
                     </li>
+
+                    <!-- CARS -->
                     <li>
                         <h4>Cars</h4>
                         <p class="text-left">
-                            ...
+                            Car emissions depend primarily on four variables: distance traveled, vehicle type, fuel type, and the number of passengers sharing the ride. GreenRoute uses the following base formula, consistent with the IPCC methodology:
+                            \[ CO_2 = d \times \frac{ef}{p} \]
+                            Where:
+                        </p>
+                        <ul style="text-align:left;">
+                            <li>\(d\) is the distance traveled in kilometers.</li>
+                            <li>\(ef\) is the emission factor for the specific vehicle and fuel type (in kg CO₂e per km).</li>
+                            <li>\(p\) is the number of passengers, since sharing a car directly reduces the per-person carbon footprint.</li>
+                        </ul>
+                        <p class="text-left">The emission factors used, sourced from DESNZ, are as follows:</p>
+                        <table style="width:100%; border-collapse:collapse; margin: 10px 0 16px 0; text-align:left;">
+                            <thead>
+                                <tr style="background-color:#e8f5e9;">
+                                    <th style="padding:8px; border:1px solid #ccc;">Fuel Type</th>
+                                    <th style="padding:8px; border:1px solid #ccc;">Emission Factor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Petrol</td><td style="padding:8px; border:1px solid #ccc;">0.171 kg CO₂e/km</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Diesel</td><td style="padding:8px; border:1px solid #ccc;">0.171 kg CO₂e/km</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Hybrid</td><td style="padding:8px; border:1px solid #ccc;">0.110 kg CO₂e/km</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Electric</td><td style="padding:8px; border:1px solid #ccc;">0.050 kg CO₂e/km</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-left">
+                            It is worth noting that the emission factor for electric cars is <strong>not zero</strong>. This is because electricity generation itself carries a carbon cost that varies by country and energy mix. In Norway, where the grid is predominantly hydroelectric, the actual emissions from electric vehicles are lower than the European average figure used here. However, for consistency and cross-country comparability, GreenRoute applies the DESNZ standard factor.
+                        </p>
+                        <p class="text-left">
+                            Carpooling has a significant effect on per-person emissions. A solo driver in a petrol car produces 0.171 kg CO₂e per km, while the same journey shared between four passengers reduces each person's footprint to approximately <strong>0.043 kg CO₂e per km</strong> — comparable to traveling by electric car alone.
                         </p>
                     </li>
+
+                    <!-- PLANES -->
                     <li>
                         <h4>Planes</h4>
                         <p class="text-left">
-                            ...
+                            Aviation emissions are among the most complex to estimate accurately, as they depend on several interacting factors: flight distance, aircraft type, cabin class, passenger load factor, and crucially, non-CO₂ warming effects at altitude. GreenRoute uses the simplified DESNZ formula for aviation:
+                            \[ CO_2 = d \times ef \]
+                            Where:
+                        </p>
+                        <ul style="text-align:left;">
+                            <li>\(d\) is the flight distance in kilometers (great-circle distance between origin and destination).</li>
+                            <li>\(ef\) is the emission factor per passenger per kilometer, which already incorporates average seat occupancy and typical aircraft operating conditions.</li>
+                        </ul>
+                        <p class="text-left">
+                            Unlike cars, the number of passengers is not entered separately, because the emission factor is already expressed on a per-passenger basis assuming standard load factors. Emission factors vary by flight length, as shorter flights are disproportionately fuel-intensive per kilometer due to the high fuel consumption during takeoff and climb:
+                        </p>
+                        <table style="width:100%; border-collapse:collapse; margin: 10px 0 16px 0; text-align:left;">
+                            <thead>
+                                <tr style="background-color:#e8f5e9;">
+                                    <th style="padding:8px; border:1px solid #ccc;">Flight Type</th>
+                                    <th style="padding:8px; border:1px solid #ccc;">Approximate Emission Factor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Short-haul (&lt; 1,500 km)</td><td style="padding:8px; border:1px solid #ccc;">~0.255 kg CO₂e/km per passenger</td></tr>
+                                <tr><td style="padding:8px; border:1px solid #ccc;">Long-haul (&gt; 1,500 km)</td><td style="padding:8px; border:1px solid #ccc;">~0.195 kg CO₂e/km per passenger</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-left">
+                            A key consideration in aviation is the <strong>Radiative Forcing Index (RFI)</strong>. Aircraft emit not only CO₂ but also water vapor, nitrogen oxides, and contrails at high altitude, all of which have additional warming effects. Scientific literature, including IPCC assessments, suggests that the total climate impact of aviation is roughly <strong>2 to 4 times greater</strong> than CO₂ alone would imply. GreenRoute acknowledges this by optionally displaying an RFI-adjusted figure alongside the standard CO₂ estimate, giving users a more complete picture of aviation's true climate cost.
+                        </p>
+                        <p class="text-left">
+                            This makes air travel by far the most carbon-intensive mode of transport per kilometer in GreenRoute's model, reinforcing why even a single transatlantic flight can outweigh months of ground-based emissions for an average user.
                         </p>
                     </li>
-                </ol>                        
+
+                </ol>
             </div>
-            <div class="box_table1">
-                      
-            </div>  
+            <div class="box_table1"></div>
         </div>
+    </div>
+</section>
 
         
       
