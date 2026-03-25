@@ -44,10 +44,34 @@
               <h1 class="logo">
                 <span class="text-logo"><i class="bi bi-signpost-split-fill"></i>Green</span>Route
               </h1>
+              {% if current_user.is_authenticated %}
               <nav>
                 <ul>
                     <li>
                         <a href="{{url_for('home.home_home')}}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('methodology.methodology_home')}}">Methology</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
+                    </li>
+                    <li>
+                      <a href="{{url_for('users.logout')}}">Logout</a>
+                    </li>
+                </ul>
+              </nav>
+              {% else %}
+              <nav>
+                <ul>
+                    <li>
+                        <a href="{{url_for('home.home_home')}}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('methodology.methodology_home')}}">Methology</a>
+                    </li>
+                    <li>
+                        <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
                     </li>
                     <li>
                       <a href="{{url_for('users.register')}}">Register</a>
@@ -55,14 +79,9 @@
                     <li>
                       <a href="{{url_for('users.login')}}">Login</a>
                     </li>
-                    <li>
-                        <a href="{{url_for('methodology.methodology_home')}}">Methodology</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
-                    </li>
                 </ul>
-              </nav> 
+              </nav>
+              {% endif %}
             </div>
           </div>
         </section>

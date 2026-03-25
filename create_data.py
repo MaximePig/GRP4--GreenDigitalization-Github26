@@ -1,0 +1,10 @@
+# from capp import db
+# db.create_all()
+
+from capp import db
+from application import application
+
+
+with application.app_context():
+   db.create_all()
+   print("Tables created successfully!")

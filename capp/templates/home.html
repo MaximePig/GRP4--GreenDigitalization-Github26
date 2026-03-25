@@ -7,10 +7,21 @@
 
     <div class="header_home">
       <div class="box"> 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div> 
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         <h1 class="home-title"><span class="text-logo"> Home</span></h1>
         <p style="text-align:left;">
             Welcome to our website! We are a team of economists and developers who have come together to create a platform that provides valuable insights and tools for economic analysis. Our goal is to make economic data and analysis accessible to everyone, regardless of their background or expertise. Whether you are a student, researcher, or simply interested in economics, we hope that our website will be a valuable resource for you. Thank you for visiting, and we look forward to sharing our work with you!
         </p>
+        {% if current_user.is_authenticated %}
+        {% else %}
         <div class="container_buttons_links_header_home">
           <div class="btn">
               <a href="{{url_for('users.register')}}" class="btn btn-primary btn-lg mr-2", style="background-color:#aaaaaa; border-color:#aaaaaa;">Register</a>
@@ -19,6 +30,7 @@
               <a href="{{url_for('users.login')}}" class="btn btn-primary btn-lg mr-2", style="background-color:#aaaaaa; border-color:#aaaaaa;">Login</a>
           </div>
         </div>  
+        {% endif %}
         <a href="{{url_for('static', filename='icons/GreenRoute-ermpaper-FOR19.pdf')}}" target="_blank" class="btn btn-primary btn-lg mr-2" style="background-color:#aaaaaa; border-color:#aaaaaa;">
         GreenRoute Termpaper  
         </a>
