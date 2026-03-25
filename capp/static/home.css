@@ -154,3 +154,19 @@ p {
     align-items: center;
   }
 }
+
+/* Section Login/Register */
+.login-page {
+  background-color: #e8e6df;
+  min-height: 100vh;
+  padding: 60px 0;
+}
+
+.login-container {
+  background-color: #cdc3b7;
+  border-radius: 10px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}

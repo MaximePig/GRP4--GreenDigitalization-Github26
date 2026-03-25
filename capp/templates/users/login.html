@@ -1,61 +1,64 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<section>
+<section class="login-page">
   <div class="container">
+    <div class="login-container">
+      <h1>Please, login here!</h1>
 
-    <h1>Please, login here!</h1>
-
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        {% for category, message in messages %}
-          <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-
-    <form method="POST" action="{{ url_for('users.login') }}">
-      {{ form.hidden_tag() }}
-
-      <div class="form-group">
-        {{ form.email.label(class="form-control-label") }}
-        {% if form.email.errors %}
-          {{ form.email(class="form-control is-invalid", placeholder="Enter your email") }}
-          <div class="invalid-feedback">
-            {% for error in form.email.errors %}<span>{{ error }}</span>{% endfor %}
-          </div>
-        {% else %}
-          {{ form.email(class="form-control", placeholder="Enter your email") }}
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
         {% endif %}
-      </div>
-      <br>
+      {% endwith %}
 
-      <div class="form-group">
-        {{ form.password.label(class="form-control-label") }}
-        {% if form.password.errors %}
-          {{ form.password(class="form-control is-invalid", placeholder="Enter your password") }}
-          <div class="invalid-feedback">
-            {% for error in form.password.errors %}<span>{{ error }}</span>{% endfor %}
-          </div>
-        {% else %}
-          {{ form.password(class="form-control", placeholder="Enter your password") }}
-        {% endif %}
-      </div>
-      <br>
+      <form method="POST" action="{{ url_for('users.login') }}">
+        {{ form.hidden_tag() }}
 
-      <div class="form-check">
-        {{ form.remember(class="form-check-input") }}
-        {{ form.remember.label(class="form-check-label") }}
-      </div>
-      <br>
+        <div class="form-group">
+          {{ form.email.label(class="form-control-label") }}
+          {% if form.email.errors %}
+            {{ form.email(class="form-control is-invalid", placeholder="Enter your email") }}
+            <div class="invalid-feedback">
+              {% for error in form.email.errors %}<span>{{ error }}</span>{% endfor %}
+            </div>
+          {% else %}
+            {{ form.email(class="form-control", placeholder="Enter your email") }}
+          {% endif %}
+        </div>
+        <br>
 
-      <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:#aaaaaa; border-color:#aaaaaa;">Login</button>
-    </form>
-    <br>
-    <div class="border-top pt-3">
-      <small>Need An Account? <a href="{{ url_for('users.register') }}">Register</a></small>
+        <div class="form-group">
+          {{ form.password.label(class="form-control-label") }}
+          {% if form.password.errors %}
+            {{ form.password(class="form-control is-invalid", placeholder="Enter your password") }}
+            <div class="invalid-feedback">
+              {% for error in form.password.errors %}<span>{{ error }}</span>{% endfor %}
+            </div>
+          {% else %}
+            {{ form.password(class="form-control", placeholder="Enter your password") }}
+          {% endif %}
+        </div>
+        <br>
+
+        <div class="form-check">
+          {{ form.remember(class="form-check-input") }}
+          {{ form.remember.label(class="form-check-label") }}
+        </div>
+        <br>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color:#aaaaaa; border-color:#aaaaaa;">Login</button>
+      </form>
+      <br>
+      <div class="border-top pt-3">
+        <p class="fs-6 text-secondary">Need an account?
+          <a href="{{ url_for('users.register') }}" class="link-register fw-semibold">Register</a>
+        </p>
+      </div>
+
     </div>
-
   </div>
 </section>
 

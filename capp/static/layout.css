@@ -6,6 +6,7 @@ Navbar (logo): #568c63
 Navbar (a menu): #2a4359
 */
 
+
 /* Google fonts Roboto  */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
 
@@ -115,3 +116,6 @@ img {
     border-bottom: #14532d 2px solid;
   }
 }
+
+
+
