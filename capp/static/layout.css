@@ -98,6 +98,22 @@ img {
 .text-logo {
   color: #14532d;
 }
+
+.logout-btn {
+  background-color: #8bbd78;
+  color: #ffffff;
+  border: 2px solid #14532d;
+  border-radius: 8px;
+  padding: 8px 16px ;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background-color: #8bbd78 ;
+  color: #ffffff ;
+  border-bottom: none ; /* overrides your default a:hover border */
+}
+
 /* Footer  */
 .section_footer{
   background-color:#8bbd78;
