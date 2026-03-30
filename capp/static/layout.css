@@ -51,11 +51,18 @@ img {
 .carbon_app_navbar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   height: 70px;
   align-items: center;
   background-color: #8bbd78;
   padding: 0 0px;
+}
+/* Navbar mid and right adjustment */
+.carbon_app_navbar nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
 }
 .carbon_app_navbar a {
   color: #14532d;
@@ -76,9 +83,18 @@ img {
   font-size: 40px;       /* size of whole logo */
   font-weight: 700;
   letter-spacing: 1px;   /* spacing between letters */
-  font-family: 'Arial';
-  
+  font-family: 'Arial';  
 }
+
+.nav-center {
+  justify-content: center;
+  flex: 1; /* takes up remaining space so it stays centered */
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
 .text-logo {
   color: #14532d;
 }

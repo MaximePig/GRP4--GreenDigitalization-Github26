@@ -46,43 +46,47 @@
               </h1>
               {% if current_user.is_authenticated %}
               <nav>
-                <ul>
-                    <li>
-                        <a href="{{url_for('home.home_home')}}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('methodology.methodology_home')}}">Methology</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
-                    </li>
-                    <li>
-                      <a href="{{ url_for('users.logout') }}">
-                        <i class="bi bi-box-arrow-right"></i> Logout
-                      </a>
-                    </li>
+                <ul class = "nav-center">
+                  <li>
+                      <a href="{{url_for('home.home_home')}}">Home</a>
+                  </li>
+                  <li>
+                      <a href="{{url_for('methodology.methodology_home')}}">Methology</a>
+                  </li>
+                  <li>
+                      <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
+                  </li>
+                </ul>
+                <ul class = "nav-right">
+                  <li>
+                    <a href="{{ url_for('users.logout') }}">
+                      <i class="bi bi-box-arrow-right"></i> Logout
+                    </a>
+                  </li>
                 </ul>
               </nav>
               {% else %}
               <nav>
-                <ul>
-                    <li>
-                        <a href="{{url_for('home.home_home')}}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('methodology.methodology_home')}}">Methology</a>
-                    </li>
-                    <li>
-                        <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
-                    </li>
+                <ul class = "nav-center">
+                  <li>
+                    <a href="{{url_for('home.home_home')}}">Home</a>
+                  </li>
+                  <li>
+                    <a href="{{url_for('methodology.methodology_home')}}">Methology</a>
+                  </li>
+                  <li>
+                      <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
+                  </li>
                     <!-- <li>
                       <a href="{{url_for('users.register')}}">Register</a>
                     </li> -->
-                    <li>
-                      <a href="{{ url_for('users.login') }}">
-                        <i class="bi bi-person"></i> Login
-                      </a>
-                    </li>
+                </ul>
+                <ul class = "nav-right">
+                  <li>
+                    <a href="{{ url_for('users.login') }}">
+                      <i class="bi bi-person"></i> Login
+                    </a>
+                  </li>
                 </ul>
               </nav>
               {% endif %}
