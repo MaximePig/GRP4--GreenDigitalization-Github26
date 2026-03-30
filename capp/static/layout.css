@@ -80,10 +80,22 @@ img {
 }
 .carbon_app_navbar .logo {
   color: white;          /* color of "Route" */
-  font-size: 40px;       /* size of whole logo */
+  font-size: 35px;       /* size of whole logo */
   font-weight: 700;
   letter-spacing: 1px;   /* spacing between letters */
   font-family: 'Arial';  
+}
+.carbon_app_navbar .logo a {
+  color: white;
+  text-decoration: none;
+  display: flex;        
+  align-items: center;
+  font-size: inherit;
+}
+
+.carbon_app_navbar .logo a:hover {
+  border-bottom: none !important;
+  color: white;
 }
 
 .nav-center {
