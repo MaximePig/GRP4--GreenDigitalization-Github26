@@ -1,17 +1,20 @@
+from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 import os
 
+load_dotenv()
+
 application = Flask(__name__)
 
-### Code GitHub
-# application.config['SECRET_KEY'] = os.environ['SECRET_KEY']  
-# DBVAR = f"postgresql://{os.environ['RDS_USERNAME']}:{os.environ['RDS_PASSWORD']}@{os.environ['RDS_HOSTNAME']}/{os.environ['RDS_DB_NAME']}"
-DBVAR = 'postgresql://postgress:Maxidenges@awseb-e-aq9dzwnfmj-stack-awsebrdsdatabase-zfzxftoo0plr.c1qucq2qc26h.eu-north-1.rds.amazonaws.com:5432/ebdb'
-application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR 
-application.config['SQLALCHEMY_BINDS'] ={'transport': DBVAR}
+### Code GitHub (les credentials sont dans le .env, pas dans le code)
+application.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+DBVAR = f"postgresql://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}@{os.environ['DB_HOST']}:5432/{os.environ['DB_NAME']}"
+application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
+application.config['SQLALCHEMY_BINDS'] = {'transport': DBVAR}
+
 
 ### Code computer
 # application.config['SECRET_KEY'] = '3oueqkfdfas8ruewqndr8ewrewrouewrere44554'
