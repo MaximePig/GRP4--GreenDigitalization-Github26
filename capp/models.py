@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(30), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
-    # transport = db.relationship('Transport', backref='author', lazy=True)
+    transport = db.relationship('Transport', backref='author', lazy=True)
 
 # Database Transport
 class Transport(db.Model):
@@ -27,5 +27,6 @@ class Transport(db.Model):
     co2= db.Column(db.Float)
     ch4= db.Column(db.Float)
     total = db.Column(db.Float)  
-    user_id = db.Column(db.Integer, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user_table.id'), nullable=False)
+    # user_id = db.Column(db.Integer, nullable=False)
     # db.ForeignKey('user_table.id'), 
