@@ -9,17 +9,17 @@ load_dotenv()
 
 application = Flask(__name__)
 
-application.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '3oueqkfdfas8ruewqndr8ewrewrouewrere44554')
-DBVAR = os.environ.get('SQLALCHEMY_DATABASE_URI',
-    f"postgresql://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/{os.environ.get('DB_NAME')}")
-application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
-application.config['SQLALCHEMY_BINDS'] = {'transport': DBVAR}
-
-### Code GitHub (les credentials sont dans le .env, pas dans le code)
-# application.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-# DBVAR = f"postgresql://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}@{os.environ['DB_HOST']}:5432/{os.environ['DB_NAME']}"
+# application.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '3oueqkfdfas8ruewqndr8ewrewrouewrere44554')
+# DBVAR = os.environ.get('SQLALCHEMY_DATABASE_URI',
+#     f"postgresql://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/{os.environ.get('DB_NAME')}")
 # application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
 # application.config['SQLALCHEMY_BINDS'] = {'transport': DBVAR}
+
+### Code GitHub (les credentials sont dans le .env, pas dans le code)
+application.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+DBVAR = f"postgresql://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}@{os.environ['DB_HOST']}:5432/{os.environ['DB_NAME']}"
+application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
+application.config['SQLALCHEMY_BINDS'] = {'transport': DBVAR}
 
 
 ### Code computer

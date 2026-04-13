@@ -4,6 +4,7 @@ from capp import db
 from datetime import timedelta, datetime
 from flask_login import login_required, current_user
 from capp.carbon_app.forms import BusForm, CarForm, PlaneForm, FerryForm, MotorbikeForm, BicycleForm, WalkForm
+from capp.carbon_app.functions import carbon_emmissions
 
 carbon_app=Blueprint('carbon_app',__name__)
 
@@ -44,7 +45,11 @@ def new_entry_bus():
         # kms = request.form['kms']
         # fuel = request.form['fuel_type']
 
-        co2 = float(kms) * efco2[transport][fuel]
+        # Calculate emissions with the function from functions.py, this is to make the code cleaner and more modular, and also allows us to test the function separately from the routes.
+        co2 = carbon_emmissions(kms, transport, fuel)
+
+        # calculate directly in the route, this is to make the code more readable and easier to understand for people who are not familiar with functions and modular code.
+        # co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
         total = co2+ch4
 
