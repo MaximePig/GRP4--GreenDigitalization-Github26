@@ -23,12 +23,8 @@
         {% if current_user.is_authenticated %}
         {% else %}
         <div class="container_buttons_links_header_home">
-          <div class="btn">
-              <a href="{{url_for('users.register')}}" class="btn btn-primary btn-lg mr-2", style="background-color:#aaaaaa; border-color:#aaaaaa;">Register</a>
-          </div>
-          <div class="btn">
-              <a href="{{url_for('users.login')}}" class="btn btn-primary btn-lg mr-2", style="background-color:#aaaaaa; border-color:#aaaaaa;">Login</a>
-          </div>
+          <a href="{{url_for('users.register')}}" class="home_btn">Register</a>
+          <a href="{{url_for('users.login')}}" class="home_btn">Login</a>
         </div>  
         {% endif %}
 

@@ -1,9 +1,4 @@
-/* Colors 
-Home, section 1 (head, background): (#9fa7bf) #FAF0E6
-Home, section 1 (head, boxes): #568c63
-Home, section 2 (developers, background): #c5c8d9 
-Home, section 2 (developers, boxes): #49736f
- */
+
 
 /* Utilities  */
 p {
@@ -12,9 +7,13 @@ p {
 }
 /* Section header_home */
 .section_header_home {
-  background: linear-gradient(135deg, #cdc3b7 0%, #d9d1c4 100%);
+  background:
+    /* semi-transparent overlay so the text stays readable */
+    linear-gradient(135deg, rgba(205, 195, 183, 0.5) 0%, rgba(217, 209, 196, 0.5) 100%),
+    /* your background image */
+    url("icons/grp-img-FOR19.jpg") center/cover no-repeat;
   padding: 40px 0 60px;
-  min-height: calc(105vh - 80px); /* full viewport minus navbar height */
+  min-height: calc(105vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,27 +49,38 @@ p {
 .header_home .box:nth-of-type(1) {
   flex-grow:2;
 }
-.header_home .box:nth-of-type(2) {
-  flex-grow:1;
-}
+
 .container_buttons_links_header_home {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap:wrap;
+  gap: 16px;        
+  margin-top: 24px;
 }
-.container_buttons_links_header_home a:hover {
-  color: #9fa7bf;
+
+/* Home hero buttons (Register / Login) */
+.home_btn {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
-.container_buttons_links_header_home btn {
-  width: 100px;
-  height: 100px;
-  background: #9fa7bf;
-  color: #fff;
-  display: flex;
-  justify-content:center;
-  align-items:center;
+
+.home_btn:hover {
+  background-color: #1b4332;
+  border-color: #1b4332;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(27, 67, 50, 0.25);
+  text-decoration: none;
 }
+
+
+
 /* Section developers */
 .section_developers {
   background-color:#e8e6df;
@@ -129,22 +139,29 @@ p {
   padding: 0px 0px;
   margin: 0px 0px;
 }
+
 .btn_developers {
-  padding: 10px 10px;
-  margin: 10px 10px 10px 10px;
+  padding: 10px 20px;
+  margin: 10px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 6px;
   text-decoration: none;
-  font-size: 18px;
-  background-color: #aaaaaa;
-  border: 2px solid  #aaaaaa;
+  font-size: 16px;
+  background-color: #2d6a4f;
+  border: 2px solid #2d6a4f;
+  transition: all 0.2s ease;
+  display: inline-block;
 }
+
 .btn_developers:hover {
   color: #fff;
-  background-color: #aaaaaa;
-  border: 2px solid #aaaaaa;
+  background-color: #1b4332;
+  border-color: #1b4332;
   text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(27, 67, 50, 0.25);
 }
+
 
 
 @media (max-width:768px) { 
