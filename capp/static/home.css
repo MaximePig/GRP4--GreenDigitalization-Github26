@@ -12,7 +12,13 @@ p {
 }
 /* Section header_home */
 .section_header_home {
-  background-color:#cdc3b7;
+  background: linear-gradient(135deg, #cdc3b7 0%, #d9d1c4 100%);
+  padding: 40px 0 60px;
+  min-height: calc(105vh - 80px); /* full viewport minus navbar height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 .home-title {
     font-size: 70px;
@@ -28,12 +34,12 @@ p {
 .header_home {
   display: flex;  
   align-items: start;
-  background: #cdc3b7;
+  /* background: #d9d1c4; */
 }
 .header_home .box {
   flex: 1;
-  background: #cdc3b7;
-  color: #fff;
+  /* background: #d9d1c4; */
+  /* color: #fff; */
   border-radius: 10px;
   margin: 20px 10px;
   padding: 15px 20px;
