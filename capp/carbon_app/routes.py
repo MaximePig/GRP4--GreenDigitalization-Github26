@@ -3,7 +3,7 @@ from capp.models import Transport
 from capp import db
 from datetime import timedelta, datetime
 from flask_login import login_required, current_user
-from capp.carbon_app.forms import BusForm, CarForm, PlaneForm, FerryForm, MotorbikeForm, BicycleForm, WalkForm
+from capp.carbon_app.forms import BusForm, CarForm, PlaneForm, FerryForm, MotorbikeForm, BicycleForm, WalkForm, TrainForm
 from capp.carbon_app.functions import carbon_emmissions
 import json
 
@@ -13,24 +13,31 @@ carbon_app=Blueprint('carbon_app',__name__)
 #Data from: http://efdb.apps.eea.europa.eu/?source=%7B%22query%22%3A%7B%22match_all%22%3A%7B%7D%7D%2C%22display_type%22%3A%22tabular%22%7D
 
 # CO2 emissions factor in kg per passenger km
-efco2={'Bus':{'Diesel':0.10231,'CNG':0.08,'Petrol':0.10231,'No Fossil Fuel':0},
-    'Car':{'Petrol':0.18592,'Diesel':0.16453,'No Fossil Fuel':0},
-    'Plane':{'Petrol':0.24298},
-    'Ferry':{'Diesel':0.11131, 'CNG':0.1131, 'No Fossil Fuel':0},
-    'Motorbike':{'Petrol':0.09816,'No Fossil Fuel':0},
-    'Scooter':{'No Fossil Fuel':0},
-    'Bicycle':{'No Fossil Fuel':0},
-    'Walk':{'No Fossil Fuel':0}}
+# Sources: DESNZ (UK Department for Energy Security and Net Zero) + IPCC
+efco2 = {
+    'Bus':       {'Diesel': 0.10231, 'CNG': 0.08, 'Petrol': 0.10231, 'Electric/Hydrogen': 0},
+    'Car':       {'Petrol': 0.171, 'Diesel': 0.171, 'Hybrid': 0.110, 'Electric': 0.050},
+    'Plane':     {'Petrol': 0.195},
+    'Train':     {'Electric': 0.007},
+    'Ferry':     {'Diesel': 0.11131, 'CNG': 0.1131, 'No Fossil Fuel': 0},
+    'Motorbike': {'Petrol': 0.09816, 'No Fossil Fuel': 0},
+    'Scooter':   {'No Fossil Fuel': 0},
+    'Bicycle':   {'No Fossil Fuel': 0},
+    'Walk':      {'No Fossil Fuel': 0}
+}
 
-# CO2 emissions factor in kg per passenger km
-efch4={'Bus':{'Diesel':2e-5,'CNG':2.5e-3,'Petrol':2e-5,'No Fossil Fuel':0},
-    'Car':{'Petrol':3.1e-4,'Diesel':3e-6,'No Fossil Fuel':0},
-    'Plane':{'Petrol':1.1e-4},
-    'Ferry':{'Diesel':3e-5, 'CNG':3e-5,'No Fossil Fuel':0},
-    'Motorbike':{'Petrol':2.1e-3,'No Fossil Fuel':0},
-    'Scooter':{'No Fossil Fuel':0},
-    'Bicycle':{'No Fossil Fuel':0},
-    'Walk':{'No Fossil Fuel':0}}
+# CH4 emissions factor in kg per passenger km
+efch4 = {
+    'Bus':       {'Diesel': 2e-5, 'CNG': 2.5e-3, 'Petrol': 2e-5, 'Electric/Hydrogen': 0},
+    'Car':       {'Petrol': 3.1e-4, 'Diesel': 3e-6, 'Hybrid': 1.5e-4, 'Electric': 0},
+    'Plane':     {'Petrol': 1.1e-4},
+    'Train':     {'Electric': 0},
+    'Ferry':     {'Diesel': 3e-5, 'CNG': 3e-5, 'No Fossil Fuel': 0},
+    'Motorbike': {'Petrol': 2.1e-3, 'No Fossil Fuel': 0},
+    'Scooter':   {'No Fossil Fuel': 0},
+    'Bicycle':   {'No Fossil Fuel': 0},
+    'Walk':      {'No Fossil Fuel': 0}
+}
 
 #Carbon app, main page
 @carbon_app.route('/carbon_app')
@@ -119,6 +126,30 @@ def new_entry_plane():
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
     return render_template('carbon_app/new_entry_plane.html', title='new entry plane', form=form)  
+
+# New entry train
+@carbon_app.route('/carbon_app/new_entry_train', methods=['GET', 'POST'])
+@login_required
+def new_entry_train():
+    form = TrainForm()
+    if form.validate_on_submit():
+        kms = form.kms.data
+        fuel = form.fuel_type.data
+        transport = 'Train'
+
+        co2 = float(kms) * efco2[transport][fuel]
+        ch4 = float(kms) * efch4[transport][fuel]
+        total = co2 + ch4
+
+        co2 = float("{:.2f}".format(co2))
+        ch4 = float("{:.2f}".format(ch4))
+        total = float("{:.2f}".format(total))
+
+        emissions = Transport(kms=kms, transport=transport, fuel=fuel, co2=co2, ch4=ch4, total=total, author=current_user)
+        db.session.add(emissions)
+        db.session.commit()
+        return redirect(url_for('carbon_app.your_data'))
+    return render_template('carbon_app/new_entry_train.html', title='new entry train', form=form)
 
 #New entry ferry
 @carbon_app.route('/carbon_app/new_entry_ferry', methods=['GET','POST'])

@@ -1,42 +1,54 @@
-/* Colors */
+/* ============================================
+   Carbon App styles
+   ============================================ */
 
-/* Utilities  */
+/* ============ Utilities ============ */
 p {
   margin: 10px 0;
   font-size: 18px;
   text-align: left;
 }
+
 h4 {
   font-size: 18px;
   text-align: left;
   font-weight: bold;
 }
 
-/* Section header */
+/* ============ New Entry Layout ============ */
+
+.new_entry {
+  display: flex;
+  background: #cdc3b7;
+  min-height: calc(100vh - 80px);   /* ← add this: full page minus navbar */
+  align-items: center;                /* ← add this: center the form vertically */
+  padding: 40px 0;                    /* ← add this: breathing room */
+}
+
+
+
+/* ============ Header section (Carbon App Calculator intro) ============ */
 .section_header_carbon_app {
   background-color: #cdc3b7;
+  padding: 40px 0;
 }
+
 .header_carbon_app {
-  display: flex;  
-  align-items: start;
-  background: #cdc3b7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
 }
+
 .header_carbon_app .box {
   flex: 1;
-  background: #cdc3b7;
+  max-width: 900px;
+  background: transparent;
   color: #14532d;
   border-radius: 10px;
   margin: 20px 10px;
   padding: 15px 20px;
   text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-.header_carbon_app .box:nth-of-type(1) {
-  flex-grow: 2;
-}
-.header_carbon_app .box:nth-of-type(2) {
-  flex-grow: 1;
 }
 
 .container_buttons_links_header_carbon_app {
@@ -48,254 +60,181 @@ h4 {
   margin-top: 24px;
 }
 
-/* Section carbon_app_new_entry_main */
+/* ============ Transport selection cards ============ */
 .section_carbon_app_new_entry_main {
   background-color: #cdc3b7;
+  padding-bottom: 40px;
 }
+
 .carbon_app_new_entry_main {
-  display: flex;  
-  align-items: start;
-  background: #cdc3b7;
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  flex-wrap: wrap;
+  gap: 16px;
 }
+
 .carbon_app_new_entry_main .box {
-  flex: 1;
+  flex: 0 0 calc(25% - 12px); 
   background: #8bbd78;
   color: #14532d;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
+  border-radius: 12px;
+  padding: 28px 20px;
   text-align: center;
-  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  min-height: 240px;
 }
-.carbon_app_new_entry_main .box:nth-of-type(1) { flex-grow: 3; }
-.carbon_app_new_entry_main .box:nth-of-type(2) { flex-grow: 3; }
-.carbon_app_new_entry_main .box:nth-of-type(3) { flex-grow: 3; }
-.carbon_app_new_entry_main .box:nth-of-type(4) { flex-grow: 3; }
 
+.carbon_app_new_entry_main .box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(20, 83, 45, 0.25);
+  background-color: #7ab068;
+  text-decoration: none;
+  color: #14532d;
+}
+
+.carbon_app_new_entry_main .box h3 {
+  margin: 8px 0;
+  color: #14532d;
+}
+
+.carbon_app_new_entry_main .box p {
+  text-align: center;
+  margin-bottom: 0;
+  color: #14532d;
+}
+
+/* ============ "New Entry" button on each card ============ */
 .section_container_buttons_carbon_app_new_entry_main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 0px;
-  margin: 0px;
+  margin-top: 10px;
 }
+
 .btn_carbon_app_new_entry_main {
-  padding: 10px 10px;
+  display: inline-block;
+  padding: 10px 22px;
   margin: 10px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 6px;
   text-decoration: none;
-  font-size: 18px;
-  background-color: #8bbd78;
-  border: 2px solid #14532d;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #2d6a4f;
+  border: 2px solid #2d6a4f;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
+
 .btn_carbon_app_new_entry_main:hover {
   color: #fff;
   background-color: #14532d;
-  border: 2px solid #14532d;
+  border-color: #14532d;
   text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(20, 83, 45, 0.25);
 }
 
-/* Container new_entry */
-.new_entry {
-  display: flex;
-  background: #cdc3b7;
-}
-.new_entry .container {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  background: #cdc3b7;
-}
-.new_entry .container .box {
-  flex: 1;
-  background: #cdc3b7;
-  border-radius: 2px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.new_entry .container .box:nth-of-type(1) {
-  flex-grow: 1;
-  background: #cdc3b7;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
-  text-align: left;
-}
-.new_entry .container .box:nth-of-type(2) {
-  flex-grow: 6;
-  max-width: 450px;
-  background: #8bbd78;
-  color: #14532d;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.new_entry .container .box:nth-of-type(3) {
-  flex-grow: 1;
-  background: #cdc3b7;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
-  text-align: left;
-}
-
-/* Container table_main */
-.table_main {
-  display: flex;
-  background: #cdc3b7;
-}
-.table_main .container {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  background: #cdc3b7;
-}
-.table_main .container .box {
-  flex: 1;
-  background: #cdc3b7;
-  border-radius: 2px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.table_main .container .box:nth-of-type(1) {
-  flex-grow: 1;
-  background: #cdc3b7;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
-  text-align: left;
-}
-.table_main .container .box:nth-of-type(2) {
-  flex-grow: 6;
-  background: #8bbd78;
-  color: #14532d;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.table_main .container .box:nth-of-type(3) {
-  flex-grow: 1;
-  background: #cdc3b7;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
-  text-align: left;
-}
-
-/* Container main menu */
+/* ============ Shared layout: centered green content boxes ============
+   Used by: .new_entry, .table_main, .main_menu
+   Pattern: empty | content | empty (3 columns)
+   ============================================ */
+.new_entry,
+.table_main,
 .main_menu {
   display: flex;
   background: #cdc3b7;
 }
+
+.new_entry .container,
+.table_main .container,
 .main_menu .container {
   display: flex;
   align-items: start;
   justify-content: space-between;
-  background: #cdc3b7;
+  background: transparent;
 }
+
+.new_entry .container .box,
+.table_main .container .box,
 .main_menu .container .box {
   flex: 1;
-  background: #cdc3b7;
-  border-radius: 2px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.main_menu .container .box:nth-of-type(1) {
-  flex-grow: 1;
-  background: #cdc3b7;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
+  background: transparent;
+  padding: 0;
   text-align: left;
 }
+
+.new_entry .container .box:nth-of-type(2),
+.table_main .container .box:nth-of-type(2),
 .main_menu .container .box:nth-of-type(2) {
   flex-grow: 6;
   max-width: 450px;
   background: #8bbd78;
   color: #14532d;
-  border-radius: 10px;
+  border-radius: 12px;
   margin: 20px 10px;
-  padding: 15px 20px;
+  padding: 20px 22px;
   text-align: center;
-}
-.main_menu .container .box:nth-of-type(3) {
-  flex-grow: 1;
-  background: #cdc3b7;
-  border-radius: 10px;
-  margin: 0px;
-  padding: 0px;
-  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* Container two_emissions_graphs */
+/* Table page needs wider content box than the others (no max-width) */
+.table_main .container .box:nth-of-type(2) {
+  max-width: none;
+}
+
+/* ============ Emissions graphs (two side-by-side charts) ============ */
 .two_emissions_graphs {
   display: flex;
   background: #cdc3b7;
 }
+
 .two_emissions_graphs .container {
   display: flex;
   align-items: start;
   justify-content: space-between;
-  background: #cdc3b7;
-}
-.two_emissions_graphs .container .box {
-  flex: 1;
-  background: #cdc3b7;
-  border-radius: 2px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.two_emissions_graphs .container .box:nth-of-type(1) {
-  flex-grow: 1;
-  background: #8bbd78;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
-}
-.two_emissions_graphs .container .box:nth-of-type(2) {
-  flex-grow: 1;
-  background: #8bbd78;
-  border-radius: 10px;
-  margin: 20px 10px;
-  padding: 15px 20px;
-  text-align: center;
+  gap: 20px;
 }
 
-/* Container buttons section main menu */
+.two_emissions_graphs .container .box {
+  flex: 1;
+  background: #8bbd78;
+  border-radius: 12px;
+  margin: 20px 0;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ============ Main menu buttons ============ */
 .container_buttons_links_main_menu {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
-.container_buttons_links_main_menu a:hover {
-  color: #8bbd78;
+  gap: 12px;
 }
 
-/* Media queries */
+/* ============ Responsive ============ */
 @media (max-width: 768px) {
-  .header_carbon_app {
-    flex-direction: column;
-  }
+  .header_carbon_app,
   .carbon_app_new_entry_main {
     flex-direction: column;
   }
-  .new_entry .container {
-    flex-direction: column;
-    padding: 10px;
-    text-align: center;
-  }
-  .table_main .container {
+
+  .new_entry .container,
+  .table_main .container,
+  .main_menu .container,
+  .two_emissions_graphs .container {
     flex-direction: column;
     padding: 10px;
     text-align: center;
