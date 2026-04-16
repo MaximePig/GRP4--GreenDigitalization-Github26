@@ -38,23 +38,14 @@ h4 {
 .header_carbon_app .box:nth-of-type(2) {
   flex-grow: 1;
 }
+
 .container_buttons_links_header_carbon_app {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
-.container_buttons_links_header_carbon_app a:hover {
-  color: #8bbd78;
-}
-.container_buttons_links_header_carbon_app btn {
-  width: 100px;
-  height: 100px;
-  background: #8bbd78;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 /* Section carbon_app_new_entry_main */

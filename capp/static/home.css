@@ -7,11 +7,7 @@ p {
 }
 /* Section header_home */
 .section_header_home {
-  background:
-    /* semi-transparent overlay so the text stays readable */
-    linear-gradient(135deg, rgba(205, 195, 183, 0.5) 0%, rgba(217, 209, 196, 0.5) 100%),
-    /* your background image */
-    url("icons/grp-img-FOR19.jpg") center/cover no-repeat;
+  background: #cdc3b7;
   padding: 40px 0 60px;
   min-height: calc(105vh - 80px);
   display: flex;
@@ -77,6 +73,23 @@ p {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(27, 67, 50, 0.25);
   text-decoration: none;
+}
+
+
+/* section photo of the group  */
+
+.img_of_the_group {
+  background:
+    /* semi-transparent overlay so the text stays readable */
+    linear-gradient(135deg, rgba(205, 195, 183, 0.5) 0%, rgba(217, 209, 196, 0.5) 100%),
+    /* your background image */
+    url("icons/grp-img-FOR19.jpg") center/cover no-repeat;
+  padding: 40px 0 60px;
+  min-height: calc(50vh);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 
