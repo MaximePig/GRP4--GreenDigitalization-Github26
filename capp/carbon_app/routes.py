@@ -17,7 +17,7 @@ carbon_app=Blueprint('carbon_app',__name__)
 efco2 = {
     'Bus':       {'Diesel': 0.10231, 'CNG': 0.08, 'Petrol': 0.10231, 'Electric/Hydrogen': 0},
     'Car':       {'Petrol': 0.171, 'Diesel': 0.171, 'Hybrid': 0.110, 'Electric': 0.050},
-    'Plane':     {'Petrol': 0.195},
+    'Plane':     {'Economy': 0.127, 'Business Class': 0.284},
     'Train':     {'Electric': 0.007},
     'Ferry':     {'Diesel': 0.11131, 'CNG': 0.1131, 'No Fossil Fuel': 0},
     'Motorbike': {'Petrol': 0.09816, 'No Fossil Fuel': 0},
@@ -30,13 +30,52 @@ efco2 = {
 efch4 = {
     'Bus':       {'Diesel': 2e-5, 'CNG': 2.5e-3, 'Petrol': 2e-5, 'Electric/Hydrogen': 0},
     'Car':       {'Petrol': 3.1e-4, 'Diesel': 3e-6, 'Hybrid': 1.5e-4, 'Electric': 0},
-    'Plane':     {'Petrol': 1.1e-4},
-    'Train':     {'Electric': 0},
+    'Plane':     {'Economy': 1.1e-4, 'Business Class': 1.1e-4},
     'Ferry':     {'Diesel': 3e-5, 'CNG': 3e-5, 'No Fossil Fuel': 0},
     'Motorbike': {'Petrol': 2.1e-3, 'No Fossil Fuel': 0},
     'Scooter':   {'No Fossil Fuel': 0},
     'Bicycle':   {'No Fossil Fuel': 0},
     'Walk':      {'No Fossil Fuel': 0}
+}
+
+# Behavioral nudges: shown on each "New Entry" form to prompt reflection
+# before the user logs a trip. Each nudge compares the selected mode
+# to a greener alternative using values from the emission factors.
+nudges = {
+    'Bus': {
+        'comparison': 'Buses are already among the more efficient motorized options per person. Nice choice!',
+        'positive': True
+    },
+    'Car': {
+        'comparison': 'A solo car trip emits roughly <strong>10× more CO₂ per km</strong> than a bus. Could this journey be a bus or train trip? If you must drive, consider carpooling — sharing with 3 others cuts your footprint by 75%.',
+        'positive': False
+    },
+    'Plane': {
+        'comparison': 'A flight emits about <strong>18× more CO₂ per km</strong> than a train. For trips under 1,000 km, the train is often nearly as fast when you count airport time.',
+        'positive': False
+    },
+    'Train': {
+        'comparison': 'Trains are the greenest motorized option, emitting <strong>9× less CO₂</strong> than a bus and <strong>20× less</strong> than a solo car. Excellent choice!',
+        'positive': True
+    },
+    'Ferry': {
+        'comparison': 'Ferries can emit more CO₂ per km than planes per passenger. If a bridge or train route exists for this trip, consider it instead.',
+        'positive': False
+    },
+    'Motorbike': {
+        'comparison': 'Motorbikes are more efficient than solo car trips but still emit significantly more than public transport. Consider if a bus or bike could work.',
+        'positive': False
+    },
+    'Bicycle': {
+        'comparison': 'Zero emissions, great for your health, and often faster than driving in cities. The best choice on every level!',
+        'icon': '🚴',
+        'positive': True
+    },
+    'Walk': {
+        'comparison': 'Zero emissions, zero cost, and the healthiest option. Every step matters!',
+        'icon': '🚶',
+        'positive': True
+    }
 }
 
 #Carbon app, main page
@@ -73,7 +112,7 @@ def new_entry_bus():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_bus.html', title='new entry bus', form=form)
+    return render_template('carbon_app/new_entry_bus.html', title='new entry bus', form=form, nudge=nudges['Bus'])
 
 #New entry car
 @carbon_app.route('/carbon_app/new_entry_car', methods=['GET','POST'])
@@ -99,7 +138,7 @@ def new_entry_car():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_car.html', title='new entry car', form=form)    
+    return render_template('carbon_app/new_entry_car.html', title='new entry car', form=form, nudge=nudges['Car'])    
 
 #New entry plane
 @carbon_app.route('/carbon_app/new_entry_plane', methods=['GET','POST'])
@@ -125,7 +164,7 @@ def new_entry_plane():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_plane.html', title='new entry plane', form=form)  
+    return render_template('carbon_app/new_entry_plane.html', title='new entry plane', form=form, nudge=nudges['Plane'])  
 
 # New entry train
 @carbon_app.route('/carbon_app/new_entry_train', methods=['GET', 'POST'])
@@ -149,7 +188,7 @@ def new_entry_train():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_train.html', title='new entry train', form=form)
+    return render_template('carbon_app/new_entry_train.html', title='new entry train', form=form, nudge=nudges['Train'])
 
 #New entry ferry
 @carbon_app.route('/carbon_app/new_entry_ferry', methods=['GET','POST'])
@@ -175,7 +214,7 @@ def new_entry_ferry():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_ferry.html', title='new entry ferry', form=form)     
+    return render_template('carbon_app/new_entry_ferry.html', title='new entry ferry', form=form, nudge=nudges['Ferry'])     
 
 #New entry motorbike
 @carbon_app.route('/carbon_app/new_entry_motorbike', methods=['GET','POST'])
@@ -201,7 +240,7 @@ def new_entry_motorbike():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_motorbike.html', title='new entry motorbike', form=form) 
+    return render_template('carbon_app/new_entry_motorbike.html', title='new entry motorbike', form=form, nudge=nudges['Motorbike']) 
 
 #New entry bicycle
 @carbon_app.route('/carbon_app/new_entry_bicycle', methods=['GET','POST'])

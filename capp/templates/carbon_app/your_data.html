@@ -1,24 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <!-- New Entry Section -->
-    <section class="main_menu">
-      <div class="container">
-          <div class="box">
-
-          </div>
-          <div class="box"> 
-              <div class="container_buttons_links_main_menu">
-                  <div class="btn">
-                      <a href="{{ url_for('carbon_app.carbon_app_home') }}" class="home_btn">New Entry</a>
-                  </div>   
-              </div>        
-          </div>
-          <div class="box">
-
-          </div>
-      </div>
-    </section> 
+    <!-- New Entry Section / Back to the Carbon App -->
+    <section class="section_dashboard_nav">
+        <div class="container dashboard_nav_container">
+            <a href="{{ url_for('carbon_app.carbon_app_home') }}" class="big_entry_btn">
+                ← New Entry
+            </a>
+        </div>
+    </section>
 
     <!-- Two Emissions Graph Section -->
     <section class="two_emissions_graphs">

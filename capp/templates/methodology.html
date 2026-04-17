@@ -17,7 +17,7 @@
                         </a>
                     </div>
                     <div class="btn">
-                        <a href="{{url_for('carbon_app.carbon_app_home')}}" class="btn btn-primary btn-lg mr-2 methodology_btn">Carbon App</a>
+                        <a href="{{url_for('carbon_app.carbon_app_home')}}" class="btn btn-primary btn-lg mr-2 methodology_btn">Calculator</a>
                     </div>
                 </div>
             </div>
@@ -106,9 +106,6 @@
                         <tr><td>Electric / Hydrogen</td><td>0</td></tr>
                     </tbody>
                 </table>
-                <p class="roadmap_note">
-                    <strong>Coming soon:</strong> a temperature correction factor for cold climates like Norway, where engines consume more fuel.
-                </p>
             </div>
         </div>
 
@@ -164,36 +161,26 @@
                     Aviation is the most carbon intensive mode per kilometer in our model. A single transatlantic flight can outweigh months of ground based emissions.
                 </p>
                 <p>
-                    Today GreenRoute uses a <strong>single average emission factor for flights</strong>, which gives a reasonable estimate for most journeys. The factor is already expressed on a per passenger basis, so you do not enter the number of passengers separately.
+                GreenRoute distinguishes between flight types, since emission factors vary significantly by distance and cabin class. Short flights are disproportionately fuel-intensive per kilometer due to takeoff and climb, and premium cabins allocate more space (and more emissions) per passenger.
+                </p>
+                <p>
+                    The factor is already expressed on a per passenger basis, so you do not enter the number of passengers separately.
                 </p>
 
-                <div class="roadmap_card">
-                    <h4>🛣️ Future improvement: flight differentiation</h4>
-                    <p>
-                        In a future version, GreenRoute will distinguish between flight types to give more accurate estimates. Here is what the planned tiered system looks like:
-                    </p>
-                    <table class="emission_table">
-                        <thead>
-                            <tr>
-                                <th>Flight Type</th>
-                                <th>Approximate Emission Factor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Short haul (&lt; 1,500 km)</td><td>~0.255 kg CO₂e / km per passenger</td></tr>
-                            <tr><td>Long haul (&gt; 1,500 km)</td><td>~0.195 kg CO₂e / km per passenger</td></tr>
-                            <tr><td>Economy class (scheduled)</td><td>~0.127</td></tr>
-                            <tr><td>Business class (scheduled)</td><td>~0.284</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+                <table class="emission_table">
+                    <thead>
+                        <tr>
+                            <th>Flight Type</th>
+                            <th>Emission Factor (kg CO₂e / km per passenger)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Economy (scheduled average)</td><td>0.127</td></tr>
+                        <tr><td>Business Class (scheduled average)</td><td>0.284</td></tr>
+                    </tbody>
+                </table>
 
-                <div class="highlight_box highlight_warning">
-                    <h4>The Radiative Forcing Index (RFI)</h4>
-                    <p>
-                        Aircraft emit not only CO₂ but also water vapor, nitrogen oxides, and contrails at altitude, all with additional warming effects. IPCC assessments suggest aviation's total climate impact is roughly <strong>2 to 4 times greater</strong> than its CO₂ alone would imply. GreenRoute plans to optionally display an RFI adjusted estimate in a future release.
-                    </p>
-                </div>
+                
             </div>
         </div>
 
