@@ -1,16 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <!-- New Entry Section / Back to the Carbon App -->
+    <!-- Dashboard Header -->
     <section class="section_dashboard_nav">
         <div class="container dashboard_nav_container">
+            <h2 class="dashboard_title"><span class="text-logo">Your Carbon Dashboard</span></h2>
+            <p class="dashboard_subtitle">Showing data from the last 5 days</p>
             <a href="{{ url_for('carbon_app.carbon_app_home') }}" class="big_entry_btn">
                 ← New Entry
             </a>
         </div>
     </section>
 
-    <!-- Two Emissions Graph Section -->
+    <!-- Emissions Charts -->
     <section class="two_emissions_graphs">
         <div class="container">
             <div class="box">
@@ -22,7 +24,7 @@
         </div>
     </section> 
 
-    <!-- Two Emissions Graph Section -->
+    <!-- Distance Charts -->
     <section class="two_emissions_graphs">
         <div class="container">
             <div class="box">
@@ -34,13 +36,12 @@
         </div>
     </section> 
 
-    <!-- Table Section -->
+    <!-- Entry Table -->
     <section class="table_main">
     <div class="container">
+        <div class="box"></div>
         <div class="box">
-
-        </div>
-        <div class="box">  
+            <h2 class="table_title">Your entries</h2>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                     {% for category, message in messages %}
@@ -58,9 +59,9 @@
                         <th scope="col">Kilometres</th>
                         <th scope="col">Transport</th>
                         <th scope="col">Fuel</th>
-                        <th scope="col">Co2</th>
-                        <th scope="col">Ch4</th>
-                        <th scope="col">Total</th>
+                        <th scope="col">CO₂ (kg)</th>
+                        <th scope="col">CH₄ (kg)</th>
+                        <th scope="col">Total (kg)</th>
                         <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -81,32 +82,35 @@
                 </tbody>
             </table>       
         </div>
-        <div class="box">
-
-        </div>
+        <div class="box"></div>
     </div>
     </section> 
 
     {% block javascript %}
     <script>
-        // Emissions
+        // ==========================================
+        // 1. EMISSIONS PIE CHART (by transport mode)
+        // ==========================================
         let emission_transport_data = JSON.parse({{ emissions_by_transport | tojson }})    
         Chart.scaleService.updateScaleDefaults('linear', {
-                ticks: {
-                    min: 0
-                }
+                ticks: { min: 0 }
         });
-    
-    
+
         let emissions_by_transport_chart = new Chart(emissions_by_transport, {
                 type: 'pie',
                 data: {
-                labels: ['Bicycle', 'Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Walk'],
+                    labels: ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train'],
                     datasets: [{
                         data: emission_transport_data,
-                        backgroundColor: ['#9ac2be', '#f2e3b6', '#f2c299',
-                            '#f2935c', '#5fd9cd', '#f2d95c', '#f2b84b', '#f27979' ],
-    
+                        backgroundColor: [
+                            '#f2e3b6',  // Bus
+                            '#f2c299',  // Car
+                            '#f2935c',  // Ferry
+                            '#5fd9cd',  // Motorbike
+                            '#f2d95c',  // Plane
+                            '#f2b84b',  // Scooter
+                            '#82c9d9'   // Train
+                        ],
                         borderWidth: 1,
                         hoverBorderColor: "black",
                         hoverBorderWidth: 2,
@@ -115,63 +119,69 @@
                     }],
                 },
                 options: {
-                        title: {
-                            display: true,
-                                text: "Emissions by type of transport (5 last days)",
-                                    fontColor: "black",
-                                    fontSize: 20,
-                        },
-                        legend: {
-                            position: "right",
-                                labels: {
-                                fontColor: "black"
-                            },
-                            display: true,
-                        },
-    
-                        elements: {
-                            hitRadius: 3,
-                        }
+                    title: {
+                        display: true,
+                        text: "Your CO₂ emissions by transport mode",
+                        fontColor: "black",
+                        fontSize: 20,
+                    },
+                    legend: {
+                        position: "right",
+                        labels: { fontColor: "black" },
+                        display: true,
+                    },
+                    elements: { hitRadius: 3 }
                 }
             })
 
-        over_time_emissions = JSON.parse({{over_time_emissions | tojson}})
-        labels = JSON.parse({{ dates_label  | tojson}})
+        // ==========================================
+        // 2. EMISSIONS LINE CHART (daily over time)
+        // ==========================================
+        let over_time_emissions = JSON.parse({{over_time_emissions | tojson}})
+        let labels = JSON.parse({{ dates_label | tojson}})
 
         new Chart(document.getElementById("over_time_emissions"), {
                 type: "line",
-                data:
-                {
+                data: {
                     labels: labels,
-                    datasets: [
-                        {
-                        label: "Individual Emissions (5 past days)",                           
+                    datasets: [{
+                        label: "CO₂ emissions (kg)",                           
                         data: over_time_emissions,
                         fill: false,
                         borderColor: '#5fd9cd',
                         lineTension: 0.1
-                        }
-                ]
+                    }]
                 },                    
-                options: {}
+                options: {
+                    title: {
+                        display: true,
+                        text: "Your daily CO₂ emissions",
+                        fontColor: "black",
+                        fontSize: 20,
+                    }
+                }
             });  
             
-        // Kilometers
+        // ==========================================
+        // 3. DISTANCE PIE CHART (by transport mode)
+        // ==========================================
         let kms_transport_data = JSON.parse({{ kms_by_transport | tojson }})    
-        Chart.scaleService.updateScaleDefaults('linear', {
-                ticks: {
-                    min: 0
-                }
-        });
+
         let kms_by_transport_chart = new Chart(kms_by_transport, {
                 type: 'pie',
                 data: {
-                labels: ['Bicycle', 'Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Walk'],
+                    labels: ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train'],
                     datasets: [{
-                        label: "Income Vs Expenses",
                         data: kms_transport_data,
-                        backgroundColor: ['#9ac2be', '#f2e3b6', '#f2c299',
-                            '#f2935c', '#5fd9cd', '#f2d95c', '#f2b84b', '#f27979' ],    
+                        backgroundColor: [
+                            '#f2e3b6',  // Bus
+                            '#f2c299',  // Car
+                            '#f2935c',  // Ferry
+                            '#5fd9cd',  // Motorbike
+                            '#f2d95c',  // Plane
+                            '#f2b84b',  // Scooter
+                            '#82c9d9'   // Train
+                        ],
                         borderWidth: 1,
                         hoverBorderColor: "black",
                         hoverBorderWidth: 2,
@@ -180,51 +190,49 @@
                     }],
                 },
                 options: {
-                        title: {
-                            display: true,
-                                text: "Kilometers by type of transport (5 last days)",
-                                fontColor: "black",
-                                fontSize: 20,
-                        },
-                        legend: {
-                            position: "right",
-                                labels: {
-                                fontColor: "black"
-                            },
-                            display: true,
-                        },
-    
-                        elements: {
-                            hitRadius: 3,
-                        }
+                    title: {
+                        display: true,
+                        text: "Distance travelled by transport mode",
+                        fontColor: "black",
+                        fontSize: 20,
+                    },
+                    legend: {
+                        position: "right",
+                        labels: { fontColor: "black" },
+                        display: true,
+                    },
+                    elements: { hitRadius: 3 }
                 }
             })
             
-        over_time_kms = JSON.parse({{over_time_kms | tojson}})
-        labels = JSON.parse({{ dates_label  | tojson}})
+        // ==========================================
+        // 4. DISTANCE LINE CHART (daily over time)
+        // ==========================================
+        let over_time_kms = JSON.parse({{over_time_kms | tojson}})
 
         new Chart(document.getElementById("over_time_kms"), {
                 type: "line",
-                data:
-                {
+                data: {
                     labels: labels,
-                    datasets: [
-                        {
-                        label: "Individual Kilometers (5 past days)",                            
+                    datasets: [{
+                        label: "Distance (km)",                            
                         data: over_time_kms,
                         fill: false,
                         borderColor: '#f2d95c',
                         lineTension: 0.1
-                        }
-                ]
+                    }]
                 },                    
-                options: {}
+                options: {
+                    title: {
+                        display: true,
+                        text: "Your daily distance travelled",
+                        fontColor: "black",
+                        fontSize: 20,
+                    }
+                }
             });   
 
         </script>
     {% endblock%}  
 
-    
-
-        
 {% endblock content %}

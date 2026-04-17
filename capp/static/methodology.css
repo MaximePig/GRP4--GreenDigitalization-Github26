@@ -45,7 +45,11 @@ em {
 
 /* ============ Header Section ============ */
 .section_header_methodology {
-  background: linear-gradient(135deg, #cdc3b7 0%, #d9d1c4 100%);
+  background:
+    /* semi-transparent overlay so the text stays readable */
+    linear-gradient(135deg, rgba(205, 195, 183, 0.4) 0%, rgba(217, 209, 196, 0.4) 100%),
+    /* your background image */
+    url("icons/METHOFOR19.jpg") center/cover no-repeat;
   padding: 40px 0 60px;
   min-height: calc(105vh - 80px); /* full viewport minus navbar height */
   display: flex;
@@ -116,7 +120,7 @@ em {
 
 /* ============ Body Section ============ */
 .section_body_methodology {
-  background-color: #f5f1e8;
+  background-color: #e8e6df;
   padding: 50px 0 80px;
 }
 
