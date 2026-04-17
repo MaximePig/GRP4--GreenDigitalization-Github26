@@ -151,7 +151,7 @@ p {
 }
 .developers .box {
   flex: 1;
-  background: #8bbd78;
+  background: #cdc3b7;
   color: black;
   border-radius: 10px;
   margin: 20px 10px;
@@ -171,7 +171,7 @@ p {
 }
 .developers .box2 {
   flex: 1;
-  background: #8bbd78;
+  background: #cdc3b7;
   color: black;
   border-radius: 10px;
   margin: 20px 10px;
@@ -189,6 +189,16 @@ p {
 .developers .box2:nth-of-type(3) {
   flex-grow:4;
   
+}
+
+.developers .box h3,
+.developers .box2 h3 {
+  text-align: center;
+}
+
+.developers .box p,
+.developers .box2 p {
+  text-align: center;
 }
 .section_container_buttons_developers {
   display: flex;
@@ -249,11 +259,54 @@ p {
 
 .login-container {
   background-color: #cdc3b7;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 40px;
-  max-width: 1000px;
+  max-width: 500px;
   margin: 0 auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.login-container h1 {
+  color: #14532d;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.login-container label {
+  color: #14532d;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.login-container .btn-primary {
+  background-color: #2d6a4f;
+  border-color: #2d6a4f;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.login-container .btn-primary:hover {
+  background-color: #1b4332;
+  border-color: #1b4332;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(27, 67, 50, 0.25);
+}
+
+.login-container a {
+  color: #2d6a4f;
+  font-weight: 600;
+}
+
+.login-container a:hover {
+  color: #1b4332;
+  text-decoration: underline;
+  border-bottom: none;
 }
 
 

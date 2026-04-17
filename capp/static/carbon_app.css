@@ -17,7 +17,7 @@ h4 {
 
 /* ============ Dashboard navigation / background of the big button section ============ */
 .section_dashboard_nav {
-  background: #cdc3b7;
+  background: #e8e6df;
   padding: 30px 0;
 }
 
@@ -113,7 +113,7 @@ h4 {
 
 .carbon_app_new_entry_main .box {
   flex: 0 calc(50% - 12px); /* grow, shrink, basis */
-  background: #8bbd78;
+  background: #cdc3b7;
   color: #14532d;
   border-radius: 12px;
   padding: 28px 20px;
@@ -132,7 +132,7 @@ h4 {
 .carbon_app_new_entry_main .box:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 18px rgba(20, 83, 45, 0.25);
-  background-color: #7ab068;
+  background-color: #c0b5a5;
   text-decoration: none;
   color: #14532d;
 }
@@ -264,7 +264,7 @@ h4 {
 .table_main,
 .main_menu {
   display: flex;
-  background: #cdc3b7;
+  background: #e8e6df;
 }
 
 .new_entry .container,
@@ -290,7 +290,7 @@ h4 {
 .main_menu .container .box:nth-of-type(2) {
   flex-grow: 6;
   max-width: 450px;
-  background: #8bbd78;
+  background: #cdc3b7;
   color: #14532d;
   border-radius: 12px;
   margin: 20px 10px;
@@ -307,7 +307,7 @@ h4 {
 /* ============ Emissions graphs (two side-by-side charts) ============ */
 .two_emissions_graphs {
   display: flex;
-  background: #cdc3b7;
+  background: #e8e6df;
 }
 
 .two_emissions_graphs .container {
@@ -319,7 +319,7 @@ h4 {
 
 .two_emissions_graphs .container .box {
   flex: 1;
-  background: #8bbd78;
+  background: #cdc3b7;
   border-radius: 12px;
   margin: 20px 0;
   padding: 20px;
