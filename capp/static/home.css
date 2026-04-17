@@ -115,7 +115,7 @@ p {
 .about_us_text {
   font-size: 18px;
   line-height: 1.65;
-  color: #2a2a2a;
+  color: #1b4332;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
@@ -152,7 +152,7 @@ p {
 .developers .box {
   flex: 1;
   background: #cdc3b7;
-  color: black;
+  color: #1b4332;
   border-radius: 10px;
   margin: 20px 10px;
   padding: 15px 20px;
@@ -172,7 +172,7 @@ p {
 .developers .box2 {
   flex: 1;
   background: #cdc3b7;
-  color: black;
+  color: #1b4332;
   border-radius: 10px;
   margin: 20px 10px;
   padding: 15px 20px;
