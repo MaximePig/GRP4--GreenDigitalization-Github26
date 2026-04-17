@@ -9,9 +9,9 @@ p {
 .section_header_home {
   background:
     /* semi-transparent overlay so the text stays readable */
-    linear-gradient(135deg, rgba(205, 195, 183, 0.3) 0%, rgba(217, 209, 196, 0.3) 100%),
+    linear-gradient(135deg, rgba(205, 195, 183, 0.4) 0%, rgba(217, 209, 196, 0.4) 100%),
     /* your background image */
-    url("icons/HOMEFOR19.jpg") center/cover no-repeat;
+    url("icons/FOR19HOMEPAGE.jpeg") center/cover no-repeat;
   padding: 40px 0 60px;
   min-height: calc(105vh - 80px);
   display: flex;
@@ -37,7 +37,7 @@ p {
 }
 .home-title .text-logo {
     color: #14532d;
-    -webkit-text-stroke: 2px #e8e6df;
+    /* -webkit-text-stroke: 2px #e8e6df; */
     text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
 }
 
