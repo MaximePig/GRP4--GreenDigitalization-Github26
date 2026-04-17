@@ -48,7 +48,7 @@
             <div class="carbon_app_navbar">
               <h1 class="logo">
                 <a href="{{url_for('home.home_home')}}">
-                  <span class="text-logo"><i class="bi bi-signpost-split-fill"></i>Green</span>Route
+                  <span class="text-logo"><i class="bi bi-signpost-split-fill"></i>GreenRoute</span>
                 </a>
               </h1> 
               {% if current_user.is_authenticated %}
@@ -106,12 +106,20 @@
         <section class="section_footer">
           <div class="container">
             <div class="footer">
-              <h1>
-                Carbon App 
+              <div class="footer_left">
+                <span class="text-logo">Green</span><span style="color: #14532d; font-family: 'Arial', sans-serif; font-weight: 700;">Route</span>
+                <span style="color: #14532d; font-size: 14px;"> &copy; 2026</span>
+              </div>
+              <div class="footer_center">
                 <a href="#">
-                  <i class="fa-solid fa-circle-up" style="color: #14532d"></i>
+                  <i class="fa-solid fa-arrow-up" style="color: #14532d; font-size: 24px;"></i>
                 </a>
-              </h1>
+              </div>
+              <div class="footer_links">
+                <a href="{{url_for('home.home_home')}}">Home</a>
+                <a href="{{url_for('methodology.methodology_home')}}">Methodology</a>
+                <a href="{{url_for('carbon_app.carbon_app_home')}}">Calculator</a>
+              </div>
             </div>
           </div>
         </section>
