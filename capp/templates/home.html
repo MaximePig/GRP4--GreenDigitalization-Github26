@@ -21,33 +21,25 @@
         <p class="home_tagline">Track your transport emissions.</p>
         <p class="home_tagline">Compare your options.</p>
         <p class="home_tagline">Travel greener.</p>
-        <!-- <p style="text-align:center;">
-            Welcome to our website! We are a team of economists and developers who have come together to create a platform that provides valuable insights and tools for economic analysis. Our goal is to make economic data and analysis accessible to everyone, regardless of their background or expertise. Whether you are a student, researcher, or simply interested in economics, we hope that our website will be a valuable resource for you. Thank you for visiting, and we look forward to sharing our work with you!
-        </p> -->
+
         {% if current_user.is_authenticated %}
+        <!-- nothing because user is login -->
         {% else %}
+        <!-- the buttons to login and register if not logged in -->
         <div class="container_buttons_links_header_home">
           <a href="{{url_for('users.register')}}" class="home_btn">Register</a>
           <a href="{{url_for('users.login')}}" class="home_btn">Login</a>
         </div>  
-        {% endif %}
+        {% endif %}   
 
-        
       </div>
-      <!-- <div class="box">
-        <img 
-          src="{{url_for('static', filename='/icons/green-mtn-road.png')}}"
-
-          alt=""/>
-      </div> -->
     </div>
-
   </div>
 </section> 
 
 
 
-<!-- Developers -->
+<!-- Students case -->
 <section class="section_developers">
   <div class="container">
     <br>
@@ -121,6 +113,7 @@
   </div>          
 </section>
 
+<!-- this is a section that allows the image of teh group to appear at the end > url for the picture is in CSS code -->
 <section class="img_of_the_group">
 
 

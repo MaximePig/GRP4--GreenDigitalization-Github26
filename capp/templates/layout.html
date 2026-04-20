@@ -34,13 +34,14 @@
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
       <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
-
+      <!-- redirect to the home page or the page we were on before -->
         {% if title %}
             <title>{{ title }}</title>
         {% else %}
             <title>home</title>
         {% endif %}
         
+        <!-- NAVBAR -->
     </head>
     <body>
         <section class="section_carbon_app_navbar">
@@ -51,6 +52,7 @@
                   <span class="text-logo"><i class="bi bi-signpost-split-fill"></i>GreenRoute</span>
                 </a>
               </h1> 
+              <!-- LOGOUT -->
               {% if current_user.is_authenticated %}
               <nav>
                 <ul class = "nav-center">
@@ -73,6 +75,7 @@
                 </ul>
               </nav>
               {% else %}
+              <!-- LOGIN -->
               <nav>
                 <ul class = "nav-center">
                   <li>
@@ -84,9 +87,6 @@
                   <li>
                       <a href="{{url_for('carbon_app.carbon_app_home')}}">Carbon App</a>
                   </li>
-                    <!-- <li>
-                      <a href="{{url_for('users.register')}}">Register</a>
-                    </li> -->
                 </ul>
                 <ul class = "nav-right">
                   <li>
@@ -102,6 +102,8 @@
         </section>
 
         {% block content %} {% endblock %}
+
+        <!-- FOOTER -->
 
         <section class="section_footer">
           <div class="container">

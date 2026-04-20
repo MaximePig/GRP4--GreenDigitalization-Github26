@@ -16,6 +16,7 @@ def register():
       user = User(username=form.username.data, email=form.email.data, password=user_hashed_password)
       db.session.add(user)
       db.session.commit()
+      # message from flask to show a message to the user after they register --> in home page for example, we have a code to display this message 
       flash('Your account has been created! Now, you are able to login!', 'success')
       return redirect(url_for('users.login'))
   return render_template('users/register.html', title='register', form=form)

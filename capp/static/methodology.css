@@ -111,6 +111,7 @@ em {
   border-radius: 8px;
   font-weight: 600;
   transition: all 0.2s ease;
+  font-size: 22px;
 }
 
 .methodology_btn:hover {

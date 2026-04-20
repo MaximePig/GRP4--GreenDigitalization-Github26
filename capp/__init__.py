@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+from dotenv import load_dotenv #package to load environment variables from a .env file, which is useful for keeping sensitive information like database credentials out of the codebase
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -9,30 +9,13 @@ load_dotenv()
 
 application = Flask(__name__)
 
-# application.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', '3oueqkfdfas8ruewqndr8ewrewrouewrere44554')
-# DBVAR = os.environ.get('SQLALCHEMY_DATABASE_URI',
-#     f"postgresql://{os.environ.get('DB_USER')}:{os.environ.get('DB_PASSWORD')}@{os.environ.get('DB_HOST')}:5432/{os.environ.get('DB_NAME')}")
-# application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
-# application.config['SQLALCHEMY_BINDS'] = {'transport': DBVAR}
 
-### Code GitHub (les credentials sont dans le .env, pas dans le code)
+### Code GitHub (credentials are in .env, not in the code)
 application.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 DBVAR = f"postgresql://{os.environ['DB_USER']}:{os.environ['DB_PASSWORD']}@{os.environ['DB_HOST']}:5432/{os.environ['DB_NAME']}"
 application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
 application.config['SQLALCHEMY_BINDS'] = {'transport': DBVAR}
 
-
-### Code computer
-# application.config['SECRET_KEY'] = '3oueqkfdfas8ruewqndr8ewrewrouewrere44554'
-# DBVAR = 'sqlite:///user.db'
-# application.config['SQLALCHEMY_DATABASE_URI'] = DBVAR
-# application.config['SQLALCHEMY_BINDS'] ={'transport': 'sqlite:///transport.db'}
-
-# # application.config['SECRET_KEY'] = os.environ['SECRET_KEY']  
-# application.config['SECRET_KEY'] = '3oueqkfdfas8ruewqndr8ewrewrouewrere44554'
-
-# application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user.db'
-# # application.config['SQLALCHEMY_BINDS'] ={'transport': 'sqlite:///transport.db'}
 
 db = SQLAlchemy(application)
 bcrypt = Bcrypt(application)

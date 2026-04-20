@@ -135,9 +135,9 @@
                 }
             })
 
-        // ==========================================
+
         // 2. EMISSIONS LINE CHART (daily over time)
-        // ==========================================
+
         let over_time_emissions = JSON.parse({{over_time_emissions | tojson}})
         let labels = JSON.parse({{ dates_label | tojson}})
 
@@ -163,9 +163,9 @@
                 }
             });  
             
-        // ==========================================
+
         // 3. DISTANCE PIE CHART (by transport mode)
-        // ==========================================
+
         let kms_transport_data = JSON.parse({{ kms_by_transport | tojson }})    
 
         let kms_by_transport_chart = new Chart(kms_by_transport, {
@@ -207,9 +207,9 @@
                 }
             })
             
-        // ==========================================
+
         // 4. DISTANCE LINE CHART (daily over time)
-        // ==========================================
+
         let over_time_kms = JSON.parse({{over_time_kms | tojson}})
 
         new Chart(document.getElementById("over_time_kms"), {

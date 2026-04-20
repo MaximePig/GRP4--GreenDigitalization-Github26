@@ -9,36 +9,43 @@ import json
 
 carbon_app=Blueprint('carbon_app',__name__)
 
-#Emissions factor per transport in kg per passemger km
-#Data from: http://efdb.apps.eea.europa.eu/?source=%7B%22query%22%3A%7B%22match_all%22%3A%7B%7D%7D%2C%22display_type%22%3A%22tabular%22%7D
+# CO2 emissions factor in kg per passenger km
+# Sources: 
+#   Car, Train, Plane: Framtiden i våre hender / Klimatsmart semester Chalmers (2024)
+#   Bus, Ferry, Motorbike: European Environment Agency (EEA)
+#   Bicycle, Walk: zero emissions (human-powered)
+
+# CH4 emissions factor in kg per passenger km
+# Source: European Environment Agency (EEA)
+# Note: CH4 values are negligible (<0.2% of total) but included for completeness
 
 # CO2 emissions factor in kg per passenger km
 # Sources: DESNZ (UK Department for Energy Security and Net Zero) + IPCC
 efco2 = {
-    'Bus':       {'Diesel': 0.10231, 'CNG': 0.08, 'Petrol': 0.10231, 'Electric/Hydrogen': 0},
+    'Bus':       {'Diesel': 0.030, 'Electric/Hydrogen': 0},
     'Car':       {'Petrol': 0.171, 'Diesel': 0.171, 'Hybrid': 0.110, 'Electric': 0.050},
     'Plane':     {'Economy': 0.127, 'Business Class': 0.284},
     'Train':     {'Electric': 0.007},
-    'Ferry':     {'Diesel': 0.11131, 'CNG': 0.1131, 'No Fossil Fuel': 0},
-    'Motorbike': {'Petrol': 0.09816, 'No Fossil Fuel': 0},
+    'Ferry':     {'Diesel': 0.186,  'Electric': 0},
+    'Motorbike': {'Petrol': 0.09816, 'Electric': 0},
     'Bicycle':   {'No Fossil Fuel': 0},
     'Walk':      {'No Fossil Fuel': 0}
 }
 
 # CH4 emissions factor in kg per passenger km
 efch4 = {
-    'Bus':       {'Diesel': 2e-5, 'CNG': 2.5e-3, 'Petrol': 2e-5, 'Electric/Hydrogen': 0},
+    'Bus':       {'Diesel': 2e-5, 'Electric/Hydrogen': 0},
     'Car':       {'Petrol': 3.1e-4, 'Diesel': 3e-6, 'Hybrid': 1.5e-4, 'Electric': 0},
     'Plane':     {'Economy': 1.1e-4, 'Business Class': 1.1e-4},
     'Train':     {'Electric': 0},
-    'Ferry':     {'Diesel': 3e-5, 'CNG': 3e-5, 'No Fossil Fuel': 0},
-    'Motorbike': {'Petrol': 2.1e-3, 'No Fossil Fuel': 0},
+    'Ferry':     {'Diesel': 3e-5, 'Electric': 0},
+    'Motorbike': {'Petrol': 2.1e-3, 'Electric': 0},
     'Bicycle':   {'No Fossil Fuel': 0},
     'Walk':      {'No Fossil Fuel': 0}
 }
 
 # Behavioral nudges: shown on each "New Entry" form to prompt reflection
-# before the user logs a trip. Each nudge compares the selected mode
+# before the user logs a trip. Each nudge compares the selected mode (positive --> is it good or not --> for the css code to have the desired layout)
 # to a greener alternative using values from the emission factors.
 nudges = {
     'Bus': {
@@ -92,8 +99,6 @@ def new_entry_bus():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Bus'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         # Calculate emissions with the function from functions.py, this is to make the code cleaner and more modular, and also allows us to test the function separately from the routes.
         # co2 = carbon_emmissions(kms, transport, fuel)
@@ -122,8 +127,6 @@ def new_entry_car():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Car'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         passengers = form.passengers.data
         co2 = (float(kms) * efco2[transport][fuel]) / passengers
@@ -149,8 +152,6 @@ def new_entry_plane():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Plane'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
@@ -199,8 +200,6 @@ def new_entry_ferry():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Ferry'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
@@ -225,8 +224,6 @@ def new_entry_motorbike():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Motorbike'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
@@ -251,8 +248,6 @@ def new_entry_bicycle():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Bicycle'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
@@ -277,8 +272,6 @@ def new_entry_walk():
         kms = form.kms.data
         fuel = form.fuel_type.data
         transport = 'Walk'
-        # kms = request.form['kms']
-        # fuel = request.form['fuel_type']
 
         co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
@@ -305,7 +298,7 @@ def your_data():
         order_by(Transport.date.desc()).order_by(Transport.transport.asc()).all()
 
     # Transport types in alphabetical order (must match chart labels in template)
-    transport_types = ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train', 'Walk', 'Bicycle']
+    transport_types = ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Train', 'Walk', 'Bicycle']
 
     # Emissions by category --> big change here --> we use a single query to get the sum of emissions for each transport type, and then we create a dictionary to map the transport types to their emissions, and then we create a list of emissions in the same order as the transport types list, this way we can easily pass it to the template and use it for the chart.
     emissions_by_transport = db.session.query(db.func.sum(Transport.total), Transport.transport). \
