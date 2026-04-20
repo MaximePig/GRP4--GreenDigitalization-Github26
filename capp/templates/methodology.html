@@ -27,9 +27,6 @@
 </section>
 
 <!-- Methodology Body -->
-<!-- what makes this page interesting is all in the css code (design) -->
-<!-- this is the explaination behind the calculator - from the GreenRoute Termpaper -->
- 
 <section class="section_body_methodology">
     <div class="container">
 
@@ -82,7 +79,10 @@
         <div class="method_card">
             <h2 class="card_title">Emission Factors by Transport Mode</h2>
             <p>
-                Each mode has its own set of emission factors depending on fuel or energy source. The numbers below are what GreenRoute uses today to calculate your footprint.
+                Each mode has its own set of emission factors depending on fuel or energy source. The numbers below are what GreenRoute uses to calculate your footprint.
+            </p>
+            <p>
+                Our emission factors come from two main sources: <strong>Framtiden i våre hender</strong> (based on Klimatsmart semester, Chalmers 2024) for car, train, plane, and indicative benchmarks, and the <strong>European Environment Agency (EEA)</strong> for bus, ferry, and motorbike. CH₄ (methane) values from the EEA are also included for completeness but represent less than 0.2% of the total.
             </p>
         </div>
 
@@ -94,7 +94,7 @@
             </div>
             <div class="transport_body">
                 <p>
-                    Because buses carry multiple passengers simultaneously, DESNZ emission factors already reflect average occupancy. Bus travel ends up being one of the more efficient motorized options per person.
+                    Because buses carry multiple passengers simultaneously, emission factors already reflect average occupancy. Bus travel is one of the more efficient motorized options per person.
                 </p>
                 <table class="emission_table">
                     <thead>
@@ -105,8 +105,6 @@
                     </thead>
                     <tbody>
                         <tr><td>Diesel</td><td>0.10231</td></tr>
-                        <tr><td>Petrol</td><td>0.10231</td></tr>
-                        <tr><td>CNG (Compressed Natural Gas)</td><td>0.08</td></tr>
                         <tr><td>Electric / Hydrogen</td><td>0</td></tr>
                     </tbody>
                 </table>
@@ -121,7 +119,7 @@
             </div>
             <div class="transport_body">
                 <p>
-                    Car emissions depend on distance, vehicle type, and the number of passengers. The per passenger footprint drops dramatically when you carpool.
+                    Car emissions depend on distance, vehicle type, and the number of passengers. The per passenger footprint drops dramatically when you carpool. GreenRoute applies the formula <strong>CO₂e = d × ef / p</strong> for cars, where <em>p</em> is the number of people in the vehicle.
                 </p>
                 <table class="emission_table">
                     <thead>
@@ -131,7 +129,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Gasoline (Petrol)</td><td>0.171</td></tr>
+                        <tr><td>Petrol (Gasoline)</td><td>0.171</td></tr>
                         <tr><td>Diesel</td><td>0.171</td></tr>
                         <tr><td>Hybrid</td><td>0.110</td></tr>
                         <tr><td>Electric</td><td>0.050</td></tr>
@@ -165,26 +163,24 @@
                     Aviation is the most carbon intensive mode per kilometer in our model. A single transatlantic flight can outweigh months of ground based emissions.
                 </p>
                 <p>
-                GreenRoute distinguishes between flight types, since emission factors vary significantly by distance and cabin class. Short flights are disproportionately fuel-intensive per kilometer due to takeoff and climb, and premium cabins allocate more space (and more emissions) per passenger.
+                    GreenRoute distinguishes between two cabin classes using average emission factors for scheduled flights. Business class travel emits roughly <strong>2.2 times more per passenger</strong> than economy, because premium cabins allocate more space and more fuel per seat.
                 </p>
                 <p>
-                    The factor is already expressed on a per passenger basis, so you do not enter the number of passengers separately.
+                    The factor is already expressed on a per passenger basis (accounting for average occupancy), so you do not enter the number of passengers separately.
                 </p>
 
                 <table class="emission_table">
                     <thead>
                         <tr>
-                            <th>Flight Type</th>
+                            <th>Flight Class</th>
                             <th>Emission Factor (kg CO₂e / km per passenger)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Economy (scheduled average)</td><td>0.127</td></tr>
-                        <tr><td>Business Class (scheduled average)</td><td>0.284</td></tr>
+                        <tr><td>Economy</td><td>0.127</td></tr>
+                        <tr><td>Business Class</td><td>0.284</td></tr>
                     </tbody>
                 </table>
-
-                
             </div>
         </div>
 
@@ -196,11 +192,22 @@
             </div>
             <div class="transport_body">
                 <p>
-                    Trains, especially those running on low carbon electricity, are among the lowest emission motorized options. A train powered by Nordic electricity emits roughly <strong>7 g CO₂e per passenger km</strong>, which is almost 10 times less than a bus and nearly 20 times less than a solo car trip.
+                    Trains running on low carbon electricity are among the lowest emission motorized options. A train powered by Nordic electricity emits roughly <strong>7 g CO₂e per passenger km</strong>, which is almost 15 times less than a bus and nearly 24 times less than a solo car trip.
                 </p>
                 <p>
                     Like other collective modes, the per passenger emission factor already incorporates average occupancy.
                 </p>
+                <table class="emission_table">
+                    <thead>
+                        <tr>
+                            <th>Energy Source</th>
+                            <th>Emission Factor (kg CO₂e / km per passenger)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Electric (Nordic grid)</td><td>0.007</td></tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -212,7 +219,7 @@
             </div>
             <div class="transport_body">
                 <p>
-                    Passenger ferries have significantly higher per passenger emissions than trains or buses, with indicative values around <strong>186 g CO₂e per passenger km</strong>.
+                    Passenger ferries have relatively high per passenger emissions compared to trains or buses. Norway is investing in electric ferries across its fjord routes, which will significantly reduce this figure over time.
                 </p>
                 <table class="emission_table">
                     <thead>
@@ -223,8 +230,32 @@
                     </thead>
                     <tbody>
                         <tr><td>Diesel</td><td>0.11131</td></tr>
-                        <tr><td>CNG</td><td>0.1131</td></tr>
-                        <tr><td>No fossil fuel</td><td>0</td></tr>
+                        <tr><td>Electric</td><td>0</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- MOTORBIKE -->
+        <div class="transport_card">
+            <div class="transport_header transport_header_motorbike">
+                <div class="transport_icon">🏍️</div>
+                <h3>Motorbike</h3>
+            </div>
+            <div class="transport_body">
+                <p>
+                    Motorbikes are more fuel efficient than cars due to their lighter weight, but they still emit significantly more per kilometer than public transport options. As a private vehicle, GreenRoute treats motorbike emissions on a per rider basis.
+                </p>
+                <table class="emission_table">
+                    <thead>
+                        <tr>
+                            <th>Fuel Type</th>
+                            <th>Emission Factor (kg CO₂e / km)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Petrol</td><td>0.09816</td></tr>
+                        <tr><td>Electric</td><td>0</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -238,7 +269,7 @@
             </div>
             <div class="transport_body">
                 <p>
-                    Walking and cycling are assigned an emission factor of <strong>0 kg CO₂e / km</strong>. While any human activity technically involves metabolic energy, GreenRoute follows the DESNZ convention of treating these modes as zero emission for transport mode comparisons. They are the greenest options by a wide margin.
+                    Walking and cycling are assigned an emission factor of <strong>0 kg CO₂e / km</strong>. While any human activity technically involves metabolic energy, GreenRoute follows the DESNZ convention of treating these modes as zero emission for transport comparisons. They are the greenest options by a wide margin.
                 </p>
             </div>
         </div>
@@ -247,7 +278,7 @@
         <div class="method_card">
             <h2 class="card_title">Comparing Transport Modes at a Glance</h2>
             <p>
-                Here is an indicative ranking of greenhouse gas emissions per passenger kilometer across modes. The further down the list, the higher the climate cost.
+                Here is an indicative ranking of greenhouse gas emissions per passenger kilometer across modes. Values are drawn from Framtiden i våre hender (Klimatsmart semester, Chalmers 2024) and represent typical averages. The further down the list, the higher the climate cost.
             </p>
 
             <div class="comparison_chart">
@@ -277,6 +308,11 @@
                     <div class="comparison_value">66 g</div>
                 </div>
                 <div class="comparison_row">
+                    <div class="comparison_label">🏍️ Motorbike (petrol)</div>
+                    <div class="comparison_bar comparison_bar_4" style="width: 35%;"></div>
+                    <div class="comparison_value">98 g</div>
+                </div>
+                <div class="comparison_row">
                     <div class="comparison_label">✈️ Flight (economy)</div>
                     <div class="comparison_bar comparison_bar_5" style="width: 45%;"></div>
                     <div class="comparison_value">127 g</div>
@@ -292,7 +328,7 @@
                     <div class="comparison_value">284 g</div>
                 </div>
             </div>
-            <p class="chart_caption">Values in g CO₂e per passenger kilometer.</p>
+            <p class="chart_caption">Values in g CO₂e per passenger kilometer. Source: Framtiden i våre hender / Klimatsmart semester Chalmers (2024). The app's per mode factors may differ slightly from these indicative benchmarks as they draw on additional EEA data for bus, ferry, and motorbike.</p>
         </div>
 
         <!-- Behavioral Design Card -->

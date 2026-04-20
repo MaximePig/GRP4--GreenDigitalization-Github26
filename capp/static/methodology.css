@@ -1,21 +1,36 @@
 /* ============================================
-   GreenRoute Methodology Page
-   Redesigned for readability and visual appeal
+   METHODOLOGY PAGE STYLES
+   
+   This file controls the styling for the
+   Methodology page (methodology.html).
+   
+   Page structure:
+   1. Header (full-screen hero with background image)
+   2. Body (cards explaining the methodology)
+      - Method cards (intro, formulas, comparison)
+      - Transport cards (bus, car, plane, etc.)
+      - Behavioral design section
+      - Limitations section
+
+   Color palette:
+   - #2d6a4f  Medium green (buttons, accents, borders)
+   - #1b4332  Deep green (headings, strong text)
+   - #95d5b2  Soft green (decorative borders, numbers)
+   - #e8e6df  Light beige (page background, matches site)
+   - #f5f1e8  Warm cream (formula blocks, highlights)
+   - #ffffff  White (cards)
+   - #2a4359  Accent blue (highlight boxes)
+   - #1a1a1a  Dark text
+   - #555555  Muted text
    ============================================ */
 
-/* Color palette
-   Primary green:    #2d6a4f
-   Deep green:       #1b4332
-   Soft green:       #95d5b2
-   Cream background: #f5f1e8
-   Card background:  #ffffff
-   Accent blue:      #2a4359
-   Accent warm:      #cdc3b7
-   Text dark:        #1a1a1a
-   Text muted:       #555555
-*/
 
-/* ============ Utilities ============ */
+/* ============================================
+   1. GLOBAL UTILITIES
+   These override defaults for the methodology 
+   page only (scoped by the page's sections).
+   ============================================ */
+
 p {
   margin: 12px 0;
   font-size: 17px;
@@ -43,21 +58,27 @@ em {
   font-style: italic;
 }
 
-/* ============ Header Section ============ */
+
+/* ============================================
+   2. HEADER SECTION
+   Full-viewport hero with background image,
+   semi-transparent overlay, title, subtitle,
+   and two navigation buttons.
+   ============================================ */
+
 .section_header_methodology {
   background:
-    /* semi-transparent overlay so the text stays readable */
     linear-gradient(135deg, rgba(205, 195, 183, 0.5) 0%, rgba(217, 209, 196, 0.5) 100%),
-    /* your background image */
     url("icons/METHOFOR19.jpg") center/cover no-repeat;
   padding: 40px 0 60px;
-  min-height: calc(105vh - 80px); /* full viewport minus navbar height */
+  min-height: calc(105vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
 }
 
+/* Flex container that centers the title box */
 .header {
   display: flex;
   align-items: center;
@@ -65,6 +86,7 @@ em {
   background: transparent;
 }
 
+/* The box holding title + subtitle + buttons */
 .header .box {
   flex: 1;
   max-width: 900px;
@@ -76,6 +98,7 @@ em {
   text-align: center;
 }
 
+/* "Methodology" title */
 .methodology_title {
   font-size: 62px;
   font-weight: 800;
@@ -83,6 +106,7 @@ em {
   margin-bottom: 18px;
 }
 
+/* Subtitle paragraph below the title */
 .methodology_subtitle {
   color: #1b4332;
   font-size: 20px;
@@ -94,6 +118,7 @@ em {
   margin: 0 auto 28px;
 }
 
+/* Container for the two header buttons */
 .container_buttons_links_header {
   display: flex;
   justify-content: center;
@@ -103,6 +128,7 @@ em {
   margin-top: 20px;
 }
 
+/* Green header buttons (Termpaper + Calculator) */
 .methodology_btn {
   background-color: #2d6a4f;
   border-color: #2d6a4f;
@@ -110,8 +136,8 @@ em {
   padding: 10px 24px;
   border-radius: 8px;
   font-weight: 600;
-  transition: all 0.2s ease;
   font-size: 22px;
+  transition: all 0.2s ease;
 }
 
 .methodology_btn:hover {
@@ -121,17 +147,32 @@ em {
   box-shadow: 0 6px 14px rgba(27, 67, 50, 0.25);
 }
 
-/* ============ Body Section ============ */
+
+/* ============================================
+   3. BODY SECTION
+   Contains all the methodology content cards.
+   Uses the site's light beige background.
+   ============================================ */
+
 .section_body_methodology {
   background-color: #e8e6df;
   padding: 50px 0 80px;
 }
 
+/* Limit content width for readability */
 .section_body_methodology .container {
   max-width: 1050px;
 }
 
-/* ============ Method Cards (big section cards) ============ */
+
+/* ============================================
+   4. METHOD CARDS
+   White rounded cards used for major sections:
+   intro, formulas, comparison chart, behavioral
+   design, and limitations.
+   ============================================ */
+
+/* Default white card */
 .method_card {
   background: #ffffff;
   border-radius: 16px;
@@ -141,16 +182,19 @@ em {
   border: 1px solid rgba(45, 106, 79, 0.08);
 }
 
+/* Green-tinted variant (used for behavioral design section) */
 .method_card_accent {
   background: linear-gradient(135deg, #ffffff 0%, #e8f5ee 100%);
   border: 1px solid rgba(45, 106, 79, 0.2);
 }
 
+/* Muted variant with dashed border (used for limitations section) */
 .method_card_muted {
   background: #fafaf7;
   border: 1px dashed rgba(45, 106, 79, 0.25);
 }
 
+/* Section title inside a method card */
 .card_title {
   font-size: 28px;
   font-weight: 700;
@@ -161,7 +205,14 @@ em {
   text-align: left;
 }
 
-/* ============ Formula Blocks ============ */
+
+/* ============================================
+   5. FORMULA BLOCKS
+   Two-column grid showing private vehicle
+   vs collective transport formulas.
+   ============================================ */
+
+/* Side-by-side layout for the two formula blocks */
 .formula_grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -169,6 +220,7 @@ em {
   margin-top: 24px;
 }
 
+/* Each formula block (cream background, green left border) */
 .formula_block {
   background: #f5f1e8;
   border-radius: 12px;
@@ -182,6 +234,7 @@ em {
   font-size: 19px;
 }
 
+/* Small label above formula (e.g. "Cars, motorbikes") */
 .formula_label {
   font-size: 14px !important;
   color: #666 !important;
@@ -192,6 +245,7 @@ em {
   font-weight: 600;
 }
 
+/* White box containing the LaTeX formula */
 .formula_math {
   background: white;
   padding: 16px;
@@ -199,9 +253,10 @@ em {
   text-align: center;
   font-size: 18px;
   margin: 14px 0;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
+/* Variable definitions list below the formula */
 .formula_vars {
   list-style: none;
   padding-left: 0;
@@ -213,6 +268,7 @@ em {
   color: #444;
 }
 
+/* Italic note below a formula (e.g. explaining why no /p needed) */
 .formula_note {
   font-size: 14px !important;
   color: #666 !important;
@@ -220,7 +276,15 @@ em {
   margin-top: 14px !important;
 }
 
-/* ============ Transport Cards ============ */
+
+/* ============================================
+   6. TRANSPORT CARDS
+   One card per transport mode (Bus, Car, Plane,
+   Train, Ferry, Motorbike, Bicycle/Walk).
+   Each has a colored header + white body.
+   ============================================ */
+
+/* Card container */
 .transport_card {
   background: #ffffff;
   border-radius: 16px;
@@ -230,11 +294,13 @@ em {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover lift effect */
 .transport_card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* Colored header bar (icon + transport name) */
 .transport_header {
   display: flex;
   align-items: center;
@@ -248,24 +314,33 @@ em {
   font-size: 26px;
 }
 
+/* Emoji icon in the header */
 .transport_icon {
   font-size: 40px;
   line-height: 1;
 }
 
-/* Per transport color themes */
-.transport_header_bus    { background: linear-gradient(135deg, #f2c76a 0%, #e8a53d 100%); }
-.transport_header_car    { background: linear-gradient(135deg, #7dd3a9 0%, #4a9e72 100%); }
-.transport_header_plane  { background: linear-gradient(135deg, #ef7d7d 0%, #d14646 100%); }
-.transport_header_train  { background: linear-gradient(135deg, #82c9d9 0%, #4a94a8 100%); }
-.transport_header_ferry  { background: linear-gradient(135deg, #8ca8e6 0%, #5570c4 100%); }
-.transport_header_human  { background: linear-gradient(135deg, #95d5b2 0%, #2d6a4f 100%); }
+/* --- Per-transport color themes --- */
+.transport_header_bus       { background: linear-gradient(135deg, #f2c76a 0%, #e8a53d 100%); }
+.transport_header_car       { background: linear-gradient(135deg, #7dd3a9 0%, #4a9e72 100%); }
+.transport_header_plane     { background: linear-gradient(135deg, #ef7d7d 0%, #d14646 100%); }
+.transport_header_train     { background: linear-gradient(135deg, #82c9d9 0%, #4a94a8 100%); }
+.transport_header_ferry     { background: linear-gradient(135deg, #8ca8e6 0%, #5570c4 100%); }
+.transport_header_motorbike { background: linear-gradient(135deg, #f9c74f 0%, #f9844a 100%); }
+.transport_header_human     { background: linear-gradient(135deg, #95d5b2 0%, #2d6a4f 100%); }
 
+/* White body below the colored header */
 .transport_body {
   padding: 26px 32px 30px;
 }
 
-/* ============ Emission Tables ============ */
+
+/* ============================================
+   7. EMISSION TABLES
+   Used inside transport cards to show
+   emission factors per fuel type.
+   ============================================ */
+
 .emission_table {
   width: 100%;
   border-collapse: separate;
@@ -273,9 +348,10 @@ em {
   margin: 18px 0;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+/* Green header row */
 .emission_table thead tr {
   background: #2d6a4f;
 }
@@ -295,19 +371,30 @@ em {
   color: #333;
 }
 
+/* Alternating row colors */
 .emission_table tbody tr:nth-child(even) {
   background: #f9f7f2;
 }
 
+/* Hover highlight */
 .emission_table tbody tr:hover {
   background: #e8f5ee;
 }
 
+/* Remove border on last row */
 .emission_table tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* ============ Highlight Boxes ============ */
+
+/* ============================================
+   8. HIGHLIGHT BOXES
+   Callout boxes used inside transport cards
+   (e.g. "Why isn't electric zero?", 
+   "The carpooling effect").
+   ============================================ */
+
+/* Default highlight (blue accent) */
 .highlight_box {
   background: #f5f1e8;
   border-left: 4px solid #2a4359;
@@ -327,6 +414,7 @@ em {
   font-size: 16px;
 }
 
+/* Positive variant (green accent, used for carpooling) */
 .highlight_positive {
   background: #e8f5ee;
   border-left-color: #2d6a4f;
@@ -336,45 +424,13 @@ em {
   color: #1b4332;
 }
 
-.highlight_warning {
-  background: #fef3e8;
-  border-left-color: #d97706;
-}
 
-.highlight_warning h4 {
-  color: #b45309;
-}
+/* ============================================
+   9. COMPARISON CHART
+   Horizontal bar chart comparing all transport
+   modes by g CO₂e per passenger-km.
+   ============================================ */
 
-/* ============ Roadmap Notes ============ */
-.roadmap_note {
-  background: #eef4fa;
-  border-radius: 8px;
-  padding: 12px 18px;
-  font-size: 15px !important;
-  color: #2a4359 !important;
-  border-left: 3px solid #5570c4;
-  margin-top: 20px !important;
-}
-
-.roadmap_card {
-  background: linear-gradient(135deg, #eef4fa 0%, #dde8f5 100%);
-  border-radius: 12px;
-  padding: 22px 26px;
-  margin: 22px 0;
-  border: 1px dashed #5570c4;
-}
-
-.roadmap_card h4 {
-  margin-top: 0;
-  color: #2a4359;
-  font-size: 18px;
-}
-
-.roadmap_card p {
-  font-size: 15px;
-}
-
-/* ============ Comparison Chart ============ */
 .comparison_chart {
   margin: 24px 0;
   background: #fafaf7;
@@ -382,21 +438,24 @@ em {
   padding: 20px 24px;
 }
 
+/* Each row: label | bar | value */
 .comparison_row {
   display: grid;
-  grid-template-columns: 180px 1fr 70px;
+  grid-template-columns: 200px 1fr 70px;
   align-items: center;
   gap: 14px;
   margin: 10px 0;
   font-size: 15px;
 }
 
+/* Transport name (right-aligned next to bar) */
 .comparison_label {
   font-weight: 600;
   color: #333;
   text-align: right;
 }
 
+/* The colored bar (width set inline in HTML) */
 .comparison_bar {
   height: 28px;
   border-radius: 6px;
@@ -404,15 +463,17 @@ em {
   min-width: 4px;
 }
 
-.comparison_bar_0 { background: linear-gradient(90deg, #95d5b2, #74c69d); }
-.comparison_bar_1 { background: linear-gradient(90deg, #74c69d, #52b788); }
-.comparison_bar_2 { background: linear-gradient(90deg, #52b788, #40916c); }
-.comparison_bar_3 { background: linear-gradient(90deg, #40916c, #2d6a4f); }
-.comparison_bar_4 { background: linear-gradient(90deg, #f2c76a, #e8a53d); }
-.comparison_bar_5 { background: linear-gradient(90deg, #f0966a, #e8754a); }
-.comparison_bar_6 { background: linear-gradient(90deg, #ef7d7d, #d14646); }
-.comparison_bar_7 { background: linear-gradient(90deg, #d14646, #8b1e1e); }
+/* Bar colors: green (low emissions) → red (high emissions) */
+.comparison_bar_0 { background: linear-gradient(90deg, #95d5b2, #74c69d); }  /* Bicycle/Walk */
+.comparison_bar_1 { background: linear-gradient(90deg, #74c69d, #52b788); }  /* Train */
+.comparison_bar_2 { background: linear-gradient(90deg, #52b788, #40916c); }  /* Bus */
+.comparison_bar_3 { background: linear-gradient(90deg, #40916c, #2d6a4f); }  /* Car shared */
+.comparison_bar_4 { background: linear-gradient(90deg, #f2c76a, #e8a53d); }  /* Car solo + Motorbike */
+.comparison_bar_5 { background: linear-gradient(90deg, #f0966a, #e8754a); }  /* Flight economy */
+.comparison_bar_6 { background: linear-gradient(90deg, #ef7d7d, #d14646); }  /* Ferry */
+.comparison_bar_7 { background: linear-gradient(90deg, #d14646, #8b1e1e); }  /* Flight business */
 
+/* g CO₂e value shown after the bar */
 .comparison_value {
   font-weight: 700;
   color: #1b4332;
@@ -420,6 +481,7 @@ em {
   font-size: 15px;
 }
 
+/* Small italic caption below the chart */
 .chart_caption {
   font-size: 14px !important;
   color: #777 !important;
@@ -428,7 +490,14 @@ em {
   margin-top: 12px !important;
 }
 
-/* ============ Principles Grid ============ */
+
+/* ============================================
+   10. BEHAVIORAL DESIGN SECTION
+   Three-column grid showing the three nudge
+   principles (timing, framing, comparison).
+   ============================================ */
+
+/* Three equal columns */
 .principles_grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -436,14 +505,16 @@ em {
   margin: 28px 0;
 }
 
+/* Each principle card */
 .principle_block {
   background: white;
   border-radius: 12px;
   padding: 24px 22px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   border-top: 4px solid #2d6a4f;
 }
 
+/* Big decorative number (01, 02, 03) */
 .principle_number {
   font-size: 36px;
   font-weight: 800;
@@ -466,6 +537,7 @@ em {
   margin: 0;
 }
 
+/* Italic closing line below the principles grid */
 .closing_line {
   font-size: 18px !important;
   font-style: italic;
@@ -477,7 +549,13 @@ em {
   border-radius: 10px;
 }
 
-/* ============ Limitations List ============ */
+
+/* ============================================
+   11. LIMITATIONS LIST
+   Checkmark list used in the "Honesty About
+   Limitations" section.
+   ============================================ */
+
 .limitations_list {
   list-style: none;
   padding-left: 0;
@@ -491,6 +569,7 @@ em {
   color: #444;
 }
 
+/* Green checkmark before each item */
 .limitations_list li:before {
   content: "✓";
   position: absolute;
@@ -500,17 +579,17 @@ em {
   font-size: 18px;
 }
 
-@media (max-width:900px) { 
+
+/* ============================================
+   12. RESPONSIVE
+   Adjustments for tablets and phones.
+   ============================================ */
+
+@media (max-width: 900px) {
   .header {
     flex-direction: column;
-  } 
-  .methodology {
-    flex-direction: column;
-  } 
-}
+  }
 
-/* ============ Responsive ============ */
-/* @media (max-width: 900px) {
   .formula_grid,
   .principles_grid {
     grid-template-columns: 1fr;
@@ -524,9 +603,9 @@ em {
   .comparison_label {
     font-size: 13px;
   }
-} */
+}
 
-/* @media (max-width: 600px) {
+@media (max-width: 600px) {
   .method_card,
   .transport_body {
     padding: 20px 18px;
@@ -557,4 +636,4 @@ em {
     gap: 8px;
     font-size: 12px;
   }
-} */
+}
