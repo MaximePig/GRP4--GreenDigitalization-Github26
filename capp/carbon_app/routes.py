@@ -21,7 +21,6 @@ efco2 = {
     'Train':     {'Electric': 0.007},
     'Ferry':     {'Diesel': 0.11131, 'CNG': 0.1131, 'No Fossil Fuel': 0},
     'Motorbike': {'Petrol': 0.09816, 'No Fossil Fuel': 0},
-    'Scooter':   {'No Fossil Fuel': 0},
     'Bicycle':   {'No Fossil Fuel': 0},
     'Walk':      {'No Fossil Fuel': 0}
 }
@@ -31,9 +30,9 @@ efch4 = {
     'Bus':       {'Diesel': 2e-5, 'CNG': 2.5e-3, 'Petrol': 2e-5, 'Electric/Hydrogen': 0},
     'Car':       {'Petrol': 3.1e-4, 'Diesel': 3e-6, 'Hybrid': 1.5e-4, 'Electric': 0},
     'Plane':     {'Economy': 1.1e-4, 'Business Class': 1.1e-4},
+    'Train':     {'Electric': 0},
     'Ferry':     {'Diesel': 3e-5, 'CNG': 3e-5, 'No Fossil Fuel': 0},
     'Motorbike': {'Petrol': 2.1e-3, 'No Fossil Fuel': 0},
-    'Scooter':   {'No Fossil Fuel': 0},
     'Bicycle':   {'No Fossil Fuel': 0},
     'Walk':      {'No Fossil Fuel': 0}
 }
@@ -97,10 +96,10 @@ def new_entry_bus():
         # fuel = request.form['fuel_type']
 
         # Calculate emissions with the function from functions.py, this is to make the code cleaner and more modular, and also allows us to test the function separately from the routes.
-        co2 = carbon_emmissions(kms, transport, fuel)
+        # co2 = carbon_emmissions(kms, transport, fuel)
 
         # calculate directly in the route, this is to make the code more readable and easier to understand for people who are not familiar with functions and modular code.
-        # co2 = float(kms) * efco2[transport][fuel]
+        co2 = float(kms) * efco2[transport][fuel]
         ch4 = float(kms) * efch4[transport][fuel]
         total = co2+ch4
 
@@ -126,9 +125,10 @@ def new_entry_car():
         # kms = request.form['kms']
         # fuel = request.form['fuel_type']
 
-        co2 = float(kms) * efco2[transport][fuel]
-        ch4 = float(kms) * efch4[transport][fuel]
-        total = co2+ch4
+        passengers = form.passengers.data
+        co2 = (float(kms) * efco2[transport][fuel]) / passengers
+        ch4 = (float(kms) * efch4[transport][fuel]) / passengers
+        total = co2 + ch4
 
         co2 = float("{:.2f}".format(co2))
         ch4 = float("{:.2f}".format(ch4))
@@ -266,7 +266,7 @@ def new_entry_bicycle():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_bicycle.html', title='new entry bicycle', form=form)
+    return render_template('carbon_app/new_entry_bicycle.html', title='new entry bicycle', form=form, nudge=nudges['Bicycle'])
 
 #New entry walk
 @carbon_app.route('/carbon_app/new_entry_walk', methods=['GET','POST'])
@@ -292,7 +292,7 @@ def new_entry_walk():
         db.session.add(emissions)
         db.session.commit()
         return redirect(url_for('carbon_app.your_data'))
-    return render_template('carbon_app/new_entry_walk.html', title='new entry walk', form=form)
+    return render_template('carbon_app/new_entry_walk.html', title='new entry walk', form=form, nudge=nudges['Walk'])
 
 
 #Your data
@@ -305,7 +305,7 @@ def your_data():
         order_by(Transport.date.desc()).order_by(Transport.transport.asc()).all()
 
     # Transport types in alphabetical order (must match chart labels in template)
-    transport_types = ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train']
+    transport_types = ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train', 'Walk', 'Bicycle']
 
     # Emissions by category --> big change here --> we use a single query to get the sum of emissions for each transport type, and then we create a dictionary to map the transport types to their emissions, and then we create a list of emissions in the same order as the transport types list, this way we can easily pass it to the template and use it for the chart.
     emissions_by_transport = db.session.query(db.func.sum(Transport.total), Transport.transport). \

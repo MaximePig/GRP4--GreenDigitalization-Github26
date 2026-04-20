@@ -99,7 +99,7 @@
         let emissions_by_transport_chart = new Chart(emissions_by_transport, {
                 type: 'pie',
                 data: {
-                    labels: ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train'],
+                    labels: ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Train', 'Walk', 'Bicycle'],
                     datasets: [{
                         data: emission_transport_data,
                         backgroundColor: [
@@ -108,8 +108,9 @@
                             '#f2935c',  // Ferry
                             '#5fd9cd',  // Motorbike
                             '#f2d95c',  // Plane
-                            '#f2b84b',  // Scooter
-                            '#82c9d9'   // Train
+                            '#82c9d9',  // Train
+                            '#9b8ec4',  // Walk
+                            '#a9f58c'   // Bicycle
                         ],
                         borderWidth: 1,
                         hoverBorderColor: "black",
@@ -170,7 +171,7 @@
         let kms_by_transport_chart = new Chart(kms_by_transport, {
                 type: 'pie',
                 data: {
-                    labels: ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Scooter', 'Train'],
+                    labels: ['Bus', 'Car', 'Ferry', 'Motorbike', 'Plane', 'Train', 'Walk', 'Bicycle'],
                     datasets: [{
                         data: kms_transport_data,
                         backgroundColor: [
@@ -179,8 +180,9 @@
                             '#f2935c',  // Ferry
                             '#5fd9cd',  // Motorbike
                             '#f2d95c',  // Plane
-                            '#f2b84b',  // Scooter
-                            '#82c9d9'   // Train
+                            '#82c9d9',  // Train
+                            '#9b8ec4',  // Walk
+                            '#a9f58c'   // Bicycle
                         ],
                         borderWidth: 1,
                         hoverBorderColor: "black",

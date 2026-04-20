@@ -311,7 +311,13 @@ p {
 
 
 .alert-info {
-  background-color: #c8e6c9;
-  border-color: #8bbd78;
+  background-color: #cdc3b7;
+  border-color: #cdc3b7;
   color: #14532d;
+}
+
+.alert-success {
+  background-color: #14532d;
+  border-color: #cdc3b7;
+  color: #cdc3b7;
 }

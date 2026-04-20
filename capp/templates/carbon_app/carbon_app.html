@@ -18,7 +18,7 @@
             </div>
           <div class="container_buttons_links_header_carbon_app">
             <a href="{{url_for('methodology.methodology_home')}}" class="home_btn">Methodology</a>
-            <a href="{{url_for('carbon_app.your_data')}}" class="home_btn">Your data</a>
+            <a href="{{url_for('carbon_app.your_data')}}" class="home_btn">Dashboard</a>
           </div>  
         </div>
       </section>
@@ -126,6 +126,17 @@
 
 
       <div class="carbon_app_new_entry_main">
+        <a class="box" href="{{url_for('carbon_app.new_entry_bicycle')}}">
+          <div class="h1 mb-3"><i class="fa-solid fa-bicycle"></i></div>
+          <h3>Bicycle</h3>
+          <p>Please, enter your kilometers by using the bicycle.</p>
+        </a>
+
+        <a class="box" href="{{url_for('carbon_app.new_entry_walk')}}">
+          <div class="h1 mb-3"><i class="fa-solid fa-person-walking"></i></div>
+          <h3>Walk</h3>
+          <p>Please, enter your kilometers by walking.</p>
+        </a>
         <a class="box" href="{{url_for('carbon_app.new_entry_bus')}}">
           <div class="h1 mb-3"><i class="fa-solid fa-bus"></i></div>
           <h3>Bus</h3>
@@ -161,18 +172,6 @@
           <h3>Motorbike</h3>
           <p>Please, enter your kilometers by using the motorcycle.</p>
         </a>
-
-        <!-- <a class="box" href="{{url_for('carbon_app.new_entry_bicycle')}}">
-          <div class="h1 mb-3"><i class="fa-solid fa-bicycle"></i></div>
-          <h3>Bicycle</h3>
-          <p>Please, enter your kilometers by using the bicycle.</p>
-        </a>
-
-        <a class="box" href="{{url_for('carbon_app.new_entry_walk')}}">
-          <div class="h1 mb-3"><i class="fa-solid fa-person-walking"></i></div>
-          <h3>Walk</h3>
-          <p>Please, enter your kilometers by walking.</p>
-        </a> -->
       </div>
     
       </div>          
